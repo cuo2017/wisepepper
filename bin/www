@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+// 注释环境变量
+var app = require('../app');
+var config = require('../config/config');
+
+app.listen(config.port, function(){
+	console.log('app started, Lisening on the port:'+ config.port)
+});

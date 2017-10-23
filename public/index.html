@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>智慧藤椒|传统农业的信息化革命</title>
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap-table/dist/bootstrap-table.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="static/sign.css">
+	<link rel="stylesheet" type="text/css" href="static/style.css">
+	<!-- 字体：有字库 -->
+	<script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js?"></script>
+	<script type="text/javascript">
+	   $youziku.load("#logo", "1c713bc541664b4098ea6fc86cb7a675", "JetLinkMediumOldStamp");
+	   $youziku.draw();
+	</script>
+
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<meta charset="utf-8">	
+</head>
+<body ng-app="wp" ng-controller="wpController">
+	
+	<div class="container-fluid">
+		<div class="sign">
+			<div class="htmleaf-container">
+				<div id="wrapper" class="login-page">
+				  	<div id="login_form" class="form">
+				    	<form class="register-form">
+				      		<input type="text" placeholder="用户名" id="r_user_name"/>
+				      		<div id="r-name-err" class="form-err">
+				      			<p>用户名由二至四个汉字构成，请正确填写</p>
+				      		</div>
+				      		<input type="password" placeholder="密码" id="r_password" />
+				      		<div id="r-pass-err" class="form-err">
+				      			<p>密码由六个以上三十个以下字母与数字构成，请正确填写</p>
+				      		</div>
+				      		<input type="text" placeholder="手机号" id="r_phone"/>
+				      		<div id="r-phone-err" class="form-err">
+				      			<p>请正确填写手机号</p>
+				      		</div>
+				      		<button id="create">创建账户</button>
+				      		<p class="message">已经有了一个账户? <a href="#">立刻登录</a></p>
+				    	</form>
+
+				    	<form class="login-form">
+				      		<input type="text"  placeholder="手机号" id="phone"/>
+					      	<!-- class="input-suc" input-err-->
+				      		<div id="phone-err" class="form-err">
+				      			<p>请正确填写手机号</p>
+				      		</div>
+				      		
+				      		<input type="password" placeholder="密码" id="password"/>
+				      		<div id="pass-err" class="form-err">
+				      			<p>密码由六个以上三十个以下字母与数字构成，请正确填写</p>
+				      		</div>
+						    <div class="remember">
+						    	<div class="checkbox">
+						    		<input id="remember" type="checkbox">
+						    	</div>
+						    	<label for="remember">记住我</label>
+						    </div>
+				      		<button type="button"  id="login">登　录</button>
+				      		<p class="message">还没有账户? <a href="#">立刻创建</a></p>
+				    	</form>
+				  	</div>
+				</div>
+			</div>
+			<img src="lib/images/123.png">
+		</div>
+
+
+
+
+
+		<div class="nav">
+			<img src="lib/images/decoration.png">
+				<div class="row nav-bar">
+					<div class="nav-logo col-lg-3">
+						<div class="row">
+							<div class="col-md-6">
+								<img src="lib/images/logo3.png">
+							</div>			
+							<div class="col-md-6">
+								<a id="logo">智慧藤椒</a>
+							</div>			
+						</div>
+						
+					</div>
+
+					<div class="nav-title col-lg-6">
+						<h1 class="text-center">智慧藤椒管理系统</h1>
+					</div>
+					
+
+					
+					<div class="nav-user col-lg-3">
+						<div class="row">
+							<div class="col-md-6">
+								<p class="text-right">你好，{{username}}</p>	
+								
+							</div>
+							<div class="col-md-1">
+								<img src="lib/images/user.jpg">
+							</div>
+						</div>
+					</div>
+				</div>
+			
+		</div>
+
+
+
+
+
+		<div class="menu">
+			<ul>
+				<li><a>天气信息</a></li>
+				<li><a>藤椒资讯</a></li>
+				<li><a>反馈信息</a></li>
+				<li><a>数据统计</a></li>
+				<li><a>用户总表</a></li>
+				<li><a>用户管理</a></li>
+				<li><a>个人信息</a></li>
+				<li><a id="signout">退出登录</a></li>
+			</ul>
+		</div>
+
+
+
+		<!-- 用户总表 -->
+			
+
+		<div class="board" id="board5">
+			<!-- This is bootstrap table. -->
+			<table id="table-all"></table>
+
+			<!-- toolbar -->
+			<div id="toolbar-all" class="btn-group">
+	            <button id="btn_add-all" type="button" class="btn btn-default" data-toggle="modal" data-target="#addModal-all">
+	                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+	            </button>
+	            <button id="btn_update-all" type="button" class="btn btn-default" data-toggle="modal" data-target="#updateModal-all">
+	                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+	            </button>
+	            <button id="btn_delete-all" type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteModal-all">
+	                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+	            </button>
+	        </div>
+		</div>
+		<!-- 用户管理 -->
+		<div class="board" id="board6" >
+			<!-- This is bootstrap table. -->
+			<table id="table"></table>
+
+			<!-- toolbar -->
+			<div id="toolbar" class="btn-group">
+	            <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#addModal">
+	                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+	            </button>
+	            <button id="btn_update" type="button" class="btn btn-default" data-toggle="modal" data-target="#updateModal">
+	                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+	            </button>
+	            <button id="btn_delete" type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteModal">
+	                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+	            </button>
+	        </div>
+
+	        
+		</div>
+
+
+		<!-- 个人信息 -->
+		<div class="board" id="board7">
+			<div class="row">
+				<div class="b7-left col-md-6">
+					<div class="row">
+						<div class="col-sm-4"></div>
+						<div class="col-sm-4 b7-logo">
+							<img src="lib/images/user.jpg">
+						</div>
+						<div class="col-sm-4"></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-6">
+							<h1>姓名：{{username}}</h1>
+						</div>
+						<div class="col-sm-3"></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-6">
+							<h3>开发权限：开发权限</h3>
+						</div>
+						<div class="col-sm-3"></div>
+					</div>
+				</div>
+				<div class="b7-right col-md-6">
+					<ul>
+						<li>
+							<div class="b7-li">
+								<label for="phone">电话：</label>
+								<p name="phone">18280470495</p>
+							</div>
+						</li>
+						<li>
+							<div class="b7-li">
+								<label for="pass">密码：</label>
+								<p name="pass">123456</p>
+							</div>
+						</li>
+						<li>
+							<div class="b7-li">
+								<label for="address">地址：</label>
+								<p name="address">三台县平安镇平安乡3区13号</p>
+							</div>
+						</li>
+						<li>
+							<div class="b7-li">
+								<label for="pepperNumber">拥有藤椒：</label>
+								<p name="pepperNumber">5 亩</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4"></div>
+				<div class="col-sm-4">
+					<div class="b7-bottom">
+						<button class="btn btn-lg btn-success">修改</button>
+					</div>
+				</div>
+				<div class="col-sm-4"></div>
+				
+			</div>
+				
+			
+		</div>
+
+
+
+
+
+		
+
+
+
+
+	<!-- 模态框 -->
+		<!-- 添加 -->
+		<div class="modal fade" id="addModal" tabindex="-1" role="dialog">
+		  	<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		<h4 class="modal-title" id="exampleModalLabel">添加用户</h4>
+		      		</div>
+			      	<div class="modal-body">
+			        	<form>
+			          		<div class="form-group">
+			            		<label for="add-name" class="control-label">姓名:</label>
+			            		<input type="text" class="form-control" id="add-name">
+			          		</div>
+			          		<div class="form-group">
+			            		<label for="add-phone" class="control-label">手机号:</label>
+			            		<input type="text" class="form-control" id="add-phone">
+			          		</div>
+			          		<div class="form-group select">
+			            		<label for="add-auth" class="control-label">权限:</label>
+			            		<!-- <input type="text" class="form-control" id="add-auth"> -->
+			            		<select id="add-auth" class="form-control">
+			            			<option value="开发权限">开发权限</option>
+			            			<option value="管理权限">管理权限</option>
+			            			<option value="运营权限">运营权限</option>
+			            			<option value="普通用户">普通用户</option>
+			            		</select>
+			          		</div>
+			          		<div class="form-group">
+			            		<label for="add-pepperNumber" class="control-label">藤椒数量:</label>
+			            		<input type="text" class="form-control" id="add-pepperNumber">
+			          		</div>
+			          		<!-- 密码默认为：123456 -->
+		          			<!-- <div class="form-group">
+			            		<label for="message-text" class="control-label">Message:</label>
+			            		<textarea class="form-control" id="message-text"></textarea>
+			          		</div> -->
+			        	</form>
+			     	</div>
+			     	<div class="modal-footer">
+			        	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			        	<button id="addUser" type="button" class="btn btn-success">提交新增用户</button>
+			      	</div>
+		    	</div>
+		  	</div>
+		</div>
+
+		<div class="modal fade" id="addModal-all" tabindex="-1" role="dialog">
+		  	<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		<h4 class="modal-title" id="exampleModalLabel">添加用户</h4>
+		      		</div>
+			      	<div class="modal-body">
+			        	<form>
+			          		<div class="form-group">
+			            		<label for="add-name-all" class="control-label">姓名:</label>
+			            		<input type="text" class="form-control" id="add-name-all">
+			          		</div>
+			          		<div class="form-group">
+			            		<label for="add-phone-all" class="control-label">手机号:</label>
+			            		<input type="text" class="form-control" id="add-phone-all">
+			          		</div>
+			          		<div class="form-group">
+			            		<label for="add-password-all" class="control-label">密码:</label>
+			            		<input type="password" class="form-control" id="add-password-all">
+			          		</div>
+			          		<div class="form-group select">
+			            		<label for="add-auth-all" class="control-label">权限:</label>
+			            		<select id="add-auth-all" class="form-control">
+			            			<option value="开发权限">开发权限</option>
+			            			<option value="管理权限">管理权限</option>
+			            			<option value="运营权限">运营权限</option>
+			            			<option value="普通用户">普通用户</option>
+			            		</select>
+			          		</div>
+			          		<div class="form-group">
+			            		<label for="add-location-all" class="control-label">地理位置:</label>
+			            		<input type="text" class="form-control" id="add-location-all">
+			          		</div>
+			          		<div class="form-group">
+			            		<label for="add-pepperNumber-all" class="control-label">藤椒数量:</label>
+			            		<input type="text" class="form-control" id="add-pepperNumber-all">
+			          		</div>
+			          		
+			        	</form>
+			     	</div>
+			     	<div class="modal-footer">
+			        	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			        	<button id="addUser-all" type="button" class="btn btn-success">提交新增用户</button>
+			      	</div>
+		    	</div>
+		  	</div>
+		</div>
+
+
+
+
+		<!-- 删除 -->
+
+		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+		  	<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		<h4 class="modal-title" id="exampleModalLabel">删除用户</h4>
+		      		</div>
+			      	<div class="modal-body">
+			        	<p id="deleteText"></p>
+			     	</div>
+			     	<div class="modal-footer">
+			        	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			        	<button id="deleteUser" type="button" class="btn btn-danger">删除</button>
+			      	</div>
+		    	</div>
+		  	</div>
+		</div>
+
+		<div class="modal fade" id="deleteModal-all" tabindex="-1" role="dialog">
+		  	<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		<h4 class="modal-title" id="exampleModalLabel">删除用户</h4>
+		      		</div>
+			      	<div class="modal-body">
+			        	<p id="deleteText-all"></p>
+			     	</div>
+			     	<div class="modal-footer">
+			        	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			        	<button id="deleteUser-all" type="button" class="btn btn-danger">删除</button>
+			      	</div>
+		    	</div>
+		  	</div>
+		</div>
+
+		<!--修改用户信息 -->
+		<div class="modal fade" id="updateModal" tabindex="-1" role="dialog">
+		  	<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		<h4 class="modal-title" id="exampleModalLabel">修改用户信息</h4>
+		      		</div>
+			      	<div class="modal-body">
+			        	<form>
+			          		<div class="form-group">
+			            		<label for="update-name" class="control-label">姓名:</label>
+			            		<input type="text" class="form-control" id="update-name">
+			          		</div>
+			          		<div class="form-group select">
+			            		<label for="update-auth" class="control-label">权限:</label>
+			            		<select id="update-auth" class="form-control">
+			            			<option value="开发权限">开发权限</option>
+			            			<option value="管理权限">管理权限</option>
+			            			<option value="运营权限">运营权限</option>
+			            			<option value="普通用户">普通用户</option>
+			            		</select>
+			          		</div>
+			          		<div class="form-group">
+			            		<label for="update-pepperNumber" class="control-label">藤椒数量:</label>
+			            		<input type="text" class="form-control" id="update-pepperNumber">
+			          		</div>
+			          		<!-- 密码默认为：123456 -->
+		          			<!-- <div class="form-group">
+			            		<label for="message-text" class="control-label">Message:</label>
+			            		<textarea class="form-control" id="message-text"></textarea>
+			          		</div> -->
+			        	</form>
+			     	</div>
+			     	<div class="modal-footer">
+			        	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			        	<button id="updateUser" type="button" class="btn btn-success">提交修改信息</button>
+			      	</div>
+		    	</div>
+		  	</div>
+		</div>
+
+		<div class="modal fade" id="updateModal-all" tabindex="-1" role="dialog">
+		  	<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		<h4 class="modal-title" id="exampleModalLabel">修改用户信息</h4>
+		      		</div>
+			      	<div class="modal-body">
+			        	<form>
+			          		<div class="form-group">
+			            		<label for="update-name-all" class="control-label">姓名:</label>
+			            		<input type="text" class="form-control" id="update-name-all">
+			          		</div>
+			          		<div class="form-group">
+			            		<label for="update-phone-all" class="control-label">手机号:</label>
+			            		<input type="text" class="form-control" id="update-phone-all">
+			          		</div>
+			          		<div class="form-group">
+			            		<label for="update-pass-all" class="control-label">密码:</label>
+			            		<input type="password" class="form-control" id="update-pass-all">
+			          		</div>
+			          		<div class="form-group select">
+			            		<label for="update-auth-all" class="control-label">权限:</label>
+			            		<select id="update-auth-all" class="form-control">
+			            			<option value="开发权限">开发权限</option>
+			            			<option value="管理权限">管理权限</option>
+			            			<option value="运营权限">运营权限</option>
+			            			<option value="普通用户">普通用户</option>
+			            		</select>
+			          		</div>
+			          		<div class="form-group">
+			            		<label for="update-location-all" class="control-label">地理位置:</label>
+			            		<input type="text" class="form-control" id="update-location-all">
+			          		</div>
+			          		<div class="form-group">
+			            		<label for="update-pepperNumber-all" class="control-label">藤椒数量:</label>
+			            		<input type="text" class="form-control" id="update-pepperNumber-all">
+			          		</div>
+			          		<!-- 密码默认为：123456 -->
+		          			<!-- <div class="form-group">
+			            		<label for="message-text" class="control-label">Message:</label>
+			            		<textarea class="form-control" id="message-text"></textarea>
+			          		</div> -->
+			        	</form>
+			     	</div>
+			     	<div class="modal-footer">
+			        	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			        	<button id="updateUser-all" type="button" class="btn btn-success">提交修改信息</button>
+			      	</div>
+		    	</div>
+		  	</div>
+		</div>
+
+	</div>
+
+
+	<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="lib/angular/angular.min.js"></script>
+	<script type="text/javascript" src="lib/angular-cookies/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
+
+	<script type="text/javascript" src="src/app.js"></script>
+	<script type="text/javascript" src="src/sign.js"></script>
+	
+</body>
+</html>
