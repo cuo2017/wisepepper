@@ -78,7 +78,7 @@
 					<div class="nav-logo col-lg-3">
 						<div class="row">
 							<div class="col-md-6">
-								<img src="lib/images/logo3.png">
+								<img src="lib/images/logo4.png">
 							</div>			
 							<div class="col-md-6">
 								<a id="logo">智慧藤椒</a>
@@ -115,9 +115,10 @@
 		<div class="menu">
 			<ul>
 				<li><a>天气信息</a></li>
-				<li><a>藤椒资讯</a></li>
-				<li><a>反馈信息</a></li>
-				<li><a>数据统计</a></li>
+				<li><a>信息处理</a></li> 
+				<!-- 藤椒资讯以及反馈信息处理 -->
+				<li><a>图表分析</a></li>
+				<li><a>信息统计</a></li>
 				<li><a>用户总表</a></li>
 				<li><a>用户管理</a></li>
 				<li><a>个人信息</a></li>
@@ -125,6 +126,134 @@
 			</ul>
 		</div>
 
+
+		<!-- 天气信息wea -->
+		<div class="board" id="board1">
+			<div class="wea1 wea">
+
+				<img src="">
+				<h1 id="wea1">天气预报</h1>
+				<div class="wea1-index">
+					<ul>
+						<li>位置：<span id="location"></span></li>
+						<li>最低温度：<span id="temp1"></span></li>
+						<li>最高温度：<span id="temp2"></span></li>
+						<li>时间：<span id="ptime"></span></li>
+						<li>天气：<span id="weather"></span></li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="wea2 wea">
+				<img src="lib/images/wea/snowy.png">
+				<h1>环境指数 </h1>
+				<div class="wea2-index">
+					<ul>
+						<li>空气温度: <span>0°C</span></li>
+						<li>空气湿度: <span>40%</span></li>
+						<li>土壤温度: <span>2°C</span></li>
+						<li>土壤湿度: <span>50%</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="wea3 wea">
+				<h1>环境综合评价</h1>
+				<div class="wea3-review">
+					<ul>
+						<li><div class="wea3-review-block">
+							<img src="lib/images/review/t.png">
+							空气温度：<span> 良好 </span>	
+						</div></li>
+						<li><div class="wea3-review-block">
+							<img src="lib/images/review/h.png">
+							空气湿度：<span> 良好 </span>	
+						</div></li>
+						<li><div class="wea3-review-block">
+							<img src="lib/images/review/st.png">
+							土壤温度：<span> 良好 </span>	
+						</div></li>
+						<li><div class="wea3-review-block">
+							<img src="lib/images/review/sh.png">
+							土壤湿度：<span> 良好 </span>	
+						</div></li>
+					</ul>
+				</div>
+				<h2>近一周环境指数走势</h2>
+				<div class="wea3-week">
+					<canvas id="myChart"></canvas>
+				</div>
+			</div>
+			<div class="wea4 wea">
+				<img src="lib/images/disaster/frosty.png">
+				<h1>灾害预报 </h1>
+				<div class="wea4-report">
+					<ul>
+						<li>灾害预报： <span>冻害</span></li>
+						<li>程度： <span>严重</span></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- 图表分析chart -->
+		<div class="board" id="board3">
+			<!-- 1、温度 2、湿度 3、温度湿度雷达图 4、某种灾害预警概率极点图 -->
+			<div id="c1" class="chart">
+				<p style="display: none;"><</p>
+				<h3>温度（°C）</h3>
+				<div class="chart-bar">
+					<h1>最近一周温度走势</h1>
+					<div class="chart-c">
+						<canvas id="chart1"></canvas>
+					</div>
+				</div>
+				<div class="chart-bar invisible-chart" style="display: none;">
+					<h1>最近一月温度详情</h1>
+					<div class="chart-c">
+						<canvas id="chart4"></canvas>
+					</div>
+				</div>
+			</div>
+			<div id="c2" class="chart">
+				<p style="display: none;"><</p>
+				<h3>湿度（%）</h3>
+				<div class="chart-bar">
+					<h1>最近一周湿度走势</h1>
+					<div class="chart-c">
+						<canvas id="chart2"></canvas>
+					</div>
+				</div>
+				<div class="chart-bar invisible-chart" style="display: none;">
+					<h1>最近一月湿度详情</h1>
+					<div class="chart-c">
+						<canvas id="chart5"></canvas>
+					</div>
+				</div>
+			</div>
+			<div id="c3" class="chart">
+				<h3>灾害（%）</h3>
+				<div class="chart-c">
+					<canvas id="chart3"></canvas>
+				</div>
+			</div>
+			
+
+			<!-- <div id="c4" class="chart">
+				<h3></h3>
+				<div class="chart-c">
+					<canvas id="chart4"></canvas>
+				</div>
+			</div> -->
+		</div>
+		<!-- 信息统计statistics -->
+
+
+		<div class="board" id="board4">
+			<table id="table-statistics"></table>
+
+			
+		</div>
 
 
 		<!-- 用户总表 -->
@@ -190,7 +319,7 @@
 					<div class="row">
 						<div class="col-sm-3"></div>
 						<div class="col-sm-6">
-							<h3>开发权限：开发权限</h3>
+							<h3>权限：开发权限</h3>
 						</div>
 						<div class="col-sm-3"></div>
 					</div>
@@ -484,13 +613,32 @@
 
 
 	<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
+
+	<script type="text/javascript" src="lib/jquery-jsonp/src/jquery.jsonp.js"></script>
+	<script type="text/javascript" src="lib/crypto-js/core.js"></script>
+	<script type="text/javascript" src="lib/crypto-js/cipher-core.js"></script>
+	<script type="text/javascript" src="lib/crypto-js/enc-base64.js"></script>
+	<script type="text/javascript" src="lib/crypto-js/hmac.js"></script>
+	<script type="text/javascript" src="lib/crypto-js/sha1.js"></script>
+	<script type="text/javascript" src="lib/crypto-js/hmac-sha1.js"></script>
+	<script type="text/javascript" src="lib/chart.js/dist/Chart.js"></script>
+	<script type="text/javascript" src="lib/moment/moment.js"></script>
+	<script type="text/javascript" src="lib/moment/locale/zh-cn.js"></script>
+
 	<script type="text/javascript" src="lib/angular/angular.min.js"></script>
 	<script type="text/javascript" src="lib/angular-cookies/angular-cookies.min.js"></script>
 	<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.js"></script>
 	<script type="text/javascript" src="lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
 
 	<script type="text/javascript" src="src/app.js"></script>
-	<script type="text/javascript" src="src/sign.js"></script>
+
+
+	
+
+
+
+
+
 	
 </body>
 </html>

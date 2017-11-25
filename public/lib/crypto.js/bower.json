@@ -1,0 +1,37 @@
+{
+  "name": "crypto.js",
+  "version": "3.1.2-5",
+  "homepage": "https://code.google.com/p/crypto-js",
+  "authors": [
+    "Jeff.Mott.OR@gmail.com"
+  ],
+  "description": "CryptoJS is a growing collection of standard and secure cryptographic algorithms implemented in JavaScript using best practices and patterns.",
+  "main": "core.js",
+  "keywords": [
+    "crypto",
+    "md5",
+    "sha-1",
+    "sha-2",
+    "sha-3",
+    "ripemd160",
+    "sha256",
+    "hmac",
+    "pbkdf2",
+    "cipher",
+    "aes",
+    "des",
+    "rabbit",
+    "rc4",
+    "encrypt",
+    "encode",
+    "decode"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
