@@ -11,6 +11,8 @@ module.exports = function(){
 	require('../app/routes/user.route.js')(app);
 	require('../app/routes/data.route.js')(app);
 
+	
+
 	//404
 	app.use(function(req, res, next){
 		res.status(404);

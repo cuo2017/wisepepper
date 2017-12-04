@@ -10,41 +10,48 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 
 	var WEA1;
 	//api:https://api.seniverse.com/v3/weather/now.json?key=5dj6pbdppzrc72kp&location=chengdu&language=zh-Hans&unit=c
+	// new api:http://www.sojson.com/open/api/weather/json.shtml?city=北京
 
-
-	// -weather--report-
+	// // -weather--report-
 	$scope.wea = function(){
 		
 
+	// 	// 没解决跨域问题
+	// 	var api = 'http://www.sojson.com/open/api/weather/json.shtml?city=北京';
+	// 	$http.get(api).then(function(data){
+	// 			var length = data.data.length;	
+	// 			console.log(length);
+	// 	});
 
-		// var api = 'https://api.seniverse.com/v3/weather/now.json?key=5dj6pbdppzrc72kp&location=chengdu&language=zh-Hans&unit=c';
-		// $http.get(api).then(function(data){
-		// 		var length = data.data.length;	
-		// 		console.log(length);
-		// });
 
 		//weather:http://www.weather.com.cn/data/sk/101010100.html
 		// 雅虎yql：雅虎提供的jsonp代理，用以解决jsonp获取json格式数据的数据格式问题。
+	  	
+
+
 	  	$.ajax({    
 	        url: 'http://query.yahooapis.com/v1/public/yql',    
 	        dataType: 'jsonp',    
 	        data: {    
-	            q: "select * from json where url=\"http://www.weather.com.cn/data/cityinfo/101270402.html\"",    
+	            q: "select * from json where url=\"http://www.sojson.com/open/api/weather/json.shtml?city=成都\"",    
 	            format: "json"    
 	        },    
 	        success: function (data) { 
-	           	var cityName = JSON.stringify(data.query.results.weatherinfo.city);//远程json数据放在query.results下 
+
+	        	console.log(data);
+	        	// data resolving
+	           	var cityName = JSON.stringify(data.query.results.json.city);//远程json数据放在query.results下 
 	           	cityName = cityName.replace(/\"/g,"");
-	           	var weather = JSON.stringify(data.query.results.weatherinfo.weather);
+	           	var weather = JSON.stringify(data.query.results.json.data.forecast[0].type);
 	           	weather = weather.replace(/\"/g,"");//正则去掉双引号
 				// moment.locale('zh-cn');
 	           	// date = moment(date).format('LLLL');
 
-	           	var temp1 = JSON.stringify(data.query.results.weatherinfo.temp1);
+	           	var temp1 = JSON.stringify(data.query.results.json.data.forecast[0].low);
 	           	temp1 = temp1.replace(/\"/g,"") ;
-	           	var temp2 = JSON.stringify(data.query.results.weatherinfo.temp2);
+	           	var temp2 = JSON.stringify(data.query.results.json.data.forecast[0].high);
 	           	temp2 = temp2.replace(/\"/g,"") ;
-	           	var ptime = JSON.stringify(data.query.results.weatherinfo.ptime);
+	           	var ptime = JSON.stringify(data.query.results.json.data.forecast[0].date);
 	           	ptime = ptime.replace(/\"/g,"");
 	           	
 	           	console.log(JSON.stringify(data));
@@ -56,7 +63,21 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 	           	$('#weather').text(weather);
 	           	
 	           	// lib/images/wea/snowy.png
-	           	$('.wea1 img').attr('src','lib/images/wea/cloudy.png');
+	           	if(weather == "多云"){
+	           		$('.wea1 img').attr('src','lib/images/wea/cloudy.png');
+	           	}
+	           	else if(weather == "大雾"){
+	           		$('.wea1 img').attr('src','lib/images/wea/foggy.png');
+	           	}
+	           	else if(weather == "小雨"){
+	           		$('.wea1 img').attr('src','lib/images/wea/rainy.png');
+	           	}
+	           	else if(weather == "小雪"){
+	           		$('.wea1 img').attr('src','lib/images/wea/snowy.png');
+	           	}
+	           	else if(weather == "晴"){
+	           		$('.wea1 img').attr('src','lib/images/wea/sunning.png');
+	           	}
 
 	        }    
 	    }); 
@@ -65,6 +86,50 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 
 	};
 	$scope.wea();
+
+
+	// Data mining
+
+	$scope.dm = function(){
+		var api = '/getDataByWeb';
+		$http.get(api).then(function(data){
+			console.log(data.data);
+			var dm = data.data;
+			var wd = dm.wd + "°C";
+			var sd = dm.sd + "%";
+			$('#at').text(wd);
+			$('#ah').text(sd);
+		});
+	};
+	$scope.dm();
+
+
+	// Disaster-report
+
+	$scope.rep = function(){
+		var api = '/getDataBySys1';
+		$http.get(api).then(function(data){
+			console.log(data.data);
+			var report = data.data;
+			$('#rep-type').text(report.type);
+			$('#rep-degree').text(report.degree);
+
+			if(report.type == "干旱"){
+				$('.wea4 img').attr('src','lib/images/disaster/drought.png');
+			}
+			else if(report.type == "冻害"){
+				$('.wea4 img').attr('src','lib/images/disaster/frosty.png');
+			}
+			else if(report.type == "锈病"){
+				$('.wea4 img').attr('src','lib/images/disaster/rust.png');
+			}
+
+			// 缺少虫害图片
+		});
+
+	};
+	$scope.rep();
+
 
 
 	// weather-chart

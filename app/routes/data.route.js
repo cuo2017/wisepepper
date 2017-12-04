@@ -1,6 +1,7 @@
 var dataController = require('../controllers/data.controller');
 
 module.exports =function(app){
+	// 存取data
 	app.route('/getData')
 	.get(dataController.getData);
 
@@ -14,5 +15,14 @@ module.exports =function(app){
 	app.route('/deleteAllData')
 	.get(dataController.deleteAllData);
 
+	// 处理data
+	app.route('/getDataBySys1')
+	.get(dataController.getDataBySys1);
 
+
+	// 爬取data
+	app.route('/getDataByWeb')
+	.get(dataController.getDataByWeb); 
+
+	
 };
