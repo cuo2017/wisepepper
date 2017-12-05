@@ -6,7 +6,7 @@ import numpy as np
 import copy
 import csv
 import random
-
+import httplib
 
 def InfoEntCalc(Label):
     LabelNum = len(Label)
@@ -384,9 +384,13 @@ def createTestDataSet():
     return testdata,test_Table
 
 
+
 def main():
     Table, DatSet, Label, Dat, dataSet = createDataSet()
-    testdata,test_Table=createTestDataSet()
+    # testdata,test_Table=createTestDataSet()
+    test_Table = ['tem', 'hum','rain','days']
+    testdata = [23,88,15,1]
+    
     #print(Dat)
     labels_tmp = Table[:]
     DatOri = Dat[:]
@@ -394,9 +398,9 @@ def main():
     # storeTree(desicionTree, 'classifierStorage.txt')
     # desicionTree = grabTree('classifierStorage.txt')
     #print('desicionTree:\n', desicionTree)
-    table_copy1=copy.deepcopy(test_Table)
-    table_copy2=copy.deepcopy(test_Table)
-    table_copy3=copy.deepcopy(test_Table)
+    table_copy1 = copy.deepcopy(test_Table)
+    table_copy2 = copy.deepcopy(test_Table)
+    table_copy3 = copy.deepcopy(test_Table)
     table_copy4 = copy.deepcopy(test_Table)
     table_copy5 = copy.deepcopy(test_Table)
     table_copy6 = copy.deepcopy(test_Table)

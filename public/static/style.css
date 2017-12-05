@@ -16,7 +16,7 @@ body {
   background: #3c763d;
   z-index: 2;
   border-bottom: 2px solid #3c763d;
-  overflow-y: hidden; }
+  overflow: hidden; }
   .nav img {
     position: absolute;
     right: 0px;

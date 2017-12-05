@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var http = require('http');
 var cheerio = require('cheerio');
 //爬虫
+var request = require('request');
 
 var User = mongoose.model('user');
 var Data = mongoose.model('data');
@@ -34,6 +35,7 @@ module.exports = {
 		});
 	},
 	
+
 	// 处理data
 
 	getDataBySys1: function(req,res,next){
@@ -130,9 +132,13 @@ module.exports = {
 			            });
 			        });
 
+			        console.log(listData[1].wd);
 
-			        data.wd = (parseInt(listData[1].wd) + parseInt(listData[3].wd) + parseInt(listData[5].wd) + parseInt(listData[7].wd) )/4;
-			        data.sd = (parseInt(listData2[1].sd) + parseInt(listData2[3].sd) + parseInt(listData2[5].sd) + parseInt(listData2[7].sd) )/4;
+			        data.wd = (parseFloat(listData[1].wd) + parseFloat(listData[3].wd) + parseFloat(listData[5].wd) + parseFloat(listData[7].wd) )/4;
+			        data.sd = (parseFloat(listData2[1].sd) + parseFloat(listData2[3].sd) + parseFloat(listData2[5].sd) + parseFloat(listData2[7].sd) )/4;
+
+			        data.wd = data.wd.toFixed(2);
+			        data.sd = data.sd.toFixed(2);
 
 			        return res.json(data);
 			    }else{
@@ -147,6 +153,37 @@ module.exports = {
 		
         
 		// return res.json(listData);
+
+	},
+
+
+	getWeaByWeb:function(req,res,next){
+
+
+		// ###搞不明白为什么没法获取数据
+		// var url = 'http://www.sojson.com/open/api/weather/json.shtml?city=三台';
+		// request({
+		//     url: url,
+		//     json: true
+		// }, function (error, response, body) {
+
+		//     if (!error && response.statusCode === 200) {
+		//         console.log('cyh' + body); // Print the json response
+
+		//     }
+		//     else{
+		//     	console.log(error);
+		//     }
+		// })
+
+
+		// ###子进程直接curl获取
+		var exec = require('child_process').exec;
+		var cmdStr = 'curl http://www.sojson.com/open/api/weather/json.shtml?city=三台';
+		exec(cmdStr,function(err,stdout,stderr){
+           	return res.json(stdout);
+
+		});
 
 	},
 

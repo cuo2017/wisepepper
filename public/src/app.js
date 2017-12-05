@@ -26,67 +26,114 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 
 		//weather:http://www.weather.com.cn/data/sk/101010100.html
 		// 雅虎yql：雅虎提供的jsonp代理，用以解决jsonp获取json格式数据的数据格式问题。
-	  	
+	  	// 
 
+	  	// $.ajax({    
+	   //      url: 'http://query.yahooapis.com/v1/public/yql',    
+	   //      dataType: 'jsonp',    
+	   //      data: {    
+	   //          q: "select * from json where url=\"http://www.sojson.com/open/api/weather/json.shtml?city=成都\"",    
+	   //          format: "json"    
+	   //      },    
+	   //      success: function (data) { 
 
-	  	$.ajax({    
-	        url: 'http://query.yahooapis.com/v1/public/yql',    
-	        dataType: 'jsonp',    
-	        data: {    
-	            q: "select * from json where url=\"http://www.sojson.com/open/api/weather/json.shtml?city=成都\"",    
-	            format: "json"    
-	        },    
-	        success: function (data) { 
-
-	        	console.log(data);
 	        	// data resolving
-	           	var cityName = JSON.stringify(data.query.results.json.city);//远程json数据放在query.results下 
-	           	cityName = cityName.replace(/\"/g,"");
-	           	var weather = JSON.stringify(data.query.results.json.data.forecast[0].type);
-	           	weather = weather.replace(/\"/g,"");//正则去掉双引号
-				// moment.locale('zh-cn');
-	           	// date = moment(date).format('LLLL');
+	   //         	var cityName = JSON.stringify(data.query.results.json.city);//远程json数据放在query.results下 
+	   //         	cityName = cityName.replace(/\"/g,"");
+	   //         	var weather = JSON.stringify(data.query.results.json.data.forecast[0].type);
+	   //         	weather = weather.replace(/\"/g,"");//正则去掉双引号
+				// // moment.locale('zh-cn');
+	   //         	// date = moment(date).format('LLLL');
 
-	           	var temp1 = JSON.stringify(data.query.results.json.data.forecast[0].low);
-	           	temp1 = temp1.replace(/\"/g,"") ;
-	           	var temp2 = JSON.stringify(data.query.results.json.data.forecast[0].high);
-	           	temp2 = temp2.replace(/\"/g,"") ;
-	           	var ptime = JSON.stringify(data.query.results.json.data.forecast[0].date);
-	           	ptime = ptime.replace(/\"/g,"");
+	   //         	var temp1 = JSON.stringify(data.query.results.json.data.forecast[0].low);
+	   //         	temp1 = temp1.replace(/\"/g,"") ;
+	   //         	var temp2 = JSON.stringify(data.query.results.json.data.forecast[0].high);
+	   //         	temp2 = temp2.replace(/\"/g,"") ;
+	   //         	var ptime = JSON.stringify(data.query.results.json.data.forecast[0].date);
+	   //         	ptime = ptime.replace(/\"/g,"");
 	           	
-	           	console.log(JSON.stringify(data));
+	   //         	console.log(JSON.stringify(data));
 
-	           	$('#location').text(cityName);
-	           	$('#temp1').text(temp1);
-	           	$('#temp2').text(temp2);
-	           	$('#ptime').text(ptime);
-	           	$('#weather').text(weather);
+	   //         	$('#location').text(cityName);
+	   //         	$('#temp1').text(temp1);
+	   //         	$('#temp2').text(temp2);
+	   //         	$('#ptime').text(ptime);
+	   //         	$('#weather').text(weather);
 	           	
-	           	// lib/images/wea/snowy.png
-	           	if(weather == "多云"){
-	           		$('.wea1 img').attr('src','lib/images/wea/cloudy.png');
-	           	}
-	           	else if(weather == "大雾"){
-	           		$('.wea1 img').attr('src','lib/images/wea/foggy.png');
-	           	}
-	           	else if(weather == "小雨"){
-	           		$('.wea1 img').attr('src','lib/images/wea/rainy.png');
-	           	}
-	           	else if(weather == "小雪"){
-	           		$('.wea1 img').attr('src','lib/images/wea/snowy.png');
-	           	}
-	           	else if(weather == "晴"){
-	           		$('.wea1 img').attr('src','lib/images/wea/sunning.png');
-	           	}
+	   //         	// lib/images/wea/snowy.png
+	   //         	if(weather == "多云"){
+	   //         		$('.wea1 img').attr('src','lib/images/wea/cloudy.png');
+	   //         	}
+	   //         	else if(weather == "大雾"){
+	   //         		$('.wea1 img').attr('src','lib/images/wea/foggy.png');
+	   //         	}
+	   //         	else if(weather == "小雨"){
+	   //         		$('.wea1 img').attr('src','lib/images/wea/rainy.png');
+	   //         	}
+	   //         	else if(weather == "小雪"){
+	   //         		$('.wea1 img').attr('src','lib/images/wea/snowy.png');
+	   //         	}
+	   //         	else if(weather == "晴"){
+	   //         		$('.wea1 img').attr('src','lib/images/wea/sunning.png');
+	   //         	}
 
-	        }    
-	    }); 
-       
-      
+	   //      }    
+	   //  });
 
+	   var url = '/getWeaByWeb';
+	   $http.get(url).then(function(data){
+
+	   		
+
+
+	   		var wea =  JSON.parse(data.data);
+
+	   		// console.log(wea.city);
+
+
+	   		// data resolving
+           	var cityName = JSON.stringify(wea.city);//远程json数据放在query.results下 
+           	cityName = cityName.replace(/\"/g,"");//正则去掉双引号
+           	var weather = JSON.stringify(wea.data.forecast[0].type);
+           	weather = weather.replace(/\"/g,"");//正则去掉双引号
+			// // moment.locale('zh-cn');
+   //         	// date = moment(date).format('LLLL');
+
+           	var temp1 = JSON.stringify(wea.data.forecast[0].low);
+           	temp1 = temp1.replace(/\"/g,"");//正则去掉双引号
+           	var temp2 = JSON.stringify(wea.data.forecast[0].high);
+           	temp2 = temp2.replace(/\"/g,"");//正则去掉双引号
+           	var ptime = JSON.stringify(wea.data.forecast[0].date);
+           	ptime = ptime.replace(/\"/g,"");//正则去掉双引号
+           	
+
+           	$('#location').text(cityName);
+           	$('#temp1').text(temp1);
+           	$('#temp2').text(temp2);
+           	$('#ptime').text(ptime);
+           	$('#weather').text(weather);
+           	
+           	// lib/images/wea/snowy.png
+           	if(weather == "多云" || weather == "阴"){
+           		$('.wea1 img').attr('src','lib/images/wea/cloudy.png');
+           	}
+           	else if(weather == "大雾"){
+           		$('.wea1 img').attr('src','lib/images/wea/foggy.png');
+           	}
+           	else if(weather == "小雨"){
+           		$('.wea1 img').attr('src','lib/images/wea/rainy.png');
+           	}
+           	else if(weather == "小雪"){
+           		$('.wea1 img').attr('src','lib/images/wea/snowy.png');
+           	}
+           	else if(weather == "晴"){
+           		$('.wea1 img').attr('src','lib/images/wea/sunning.png');
+           	}
+
+	   }); 
 	};
-	$scope.wea();
 
+	$scope.wea();
 
 	// Data mining
 
