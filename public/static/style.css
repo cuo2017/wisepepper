@@ -449,7 +449,7 @@ body {
 .board{
   display: none;
   position: absolute;
-  top: 200px;
+  top: 15%;
   /*left: 15%;*/
   /*width: 1000px;*/
   padding: 0px;
