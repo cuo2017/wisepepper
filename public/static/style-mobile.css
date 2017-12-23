@@ -2,63 +2,73 @@
 body {
   padding: 0;
   margin: 0;
+  width: 100%;
   background: #efefef;
-  overflow-y: hidden; 
+  /*overflow-x: hidden; */
 }
-.nav {
+.nav{
   position: fixed;
   left: 0px;
   top: 0px;
   width: 100%;
-  height: 100px;
+  height: 70px;
   background: #3c763d;
   z-index: 2;
   border-bottom: 2px solid #3c763d;
-  /*overflow: hidden; */
+  overflow: hidden; 
 }
-  .nav img {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    width: 100%;
-    display: none }
+.nav img{
+	display: none;
+}
 
-.nav-bar {
+.nav-bar{
   	display: none;
-   }
+}
+
 .nav-bar-mobile{
 	position: relative;
   	margin:0 auto;
   	top: 10px;
+  	width: 100%;
 }
 .nav-bar-mobile img{
+	margin-top:5px;
 	display: block;
-	height: 100px;
-	width: 100px;
+	height: 60px;
+	width: 60px;
+}
+.nav-bar-mobile h1{
+	margin-top: 20px;
+	font-size: 1.5em;
+	color:#fff;
 }
 .nav-bar-mobile p{
-	margin-top: 30px;
-	font-size: 1.8em;
+	margin-top: 20px;
+	font-size: 1em;
 	color:#fff;
+	text-align: right;
 }
 
 
 
  
 .menu {
-  position: fixed;
-  top: 100px;
-  left: 0px;
-  width: 100%;
-  height: 100px;
-  background: #fff;
-  border-right: 2px solid #3c763d; }
+  	position: fixed;
+  	top: 70px;
+  	left: 0px;
+  	width: 100%;
+  	height: 50px;
+  	background: #fff;
+  	/*border-right: 2px solid #3c763d; */
+  	z-index: 10;
+	overflow-x:scroll;
+}
   .menu ul {
-    position: absolute;
-    top: 30px;
+    position: relative;
+    top: 5px;
     left: 0px;
-    width: 100%;
-    height: 100px;
+    width: 300%;
+    height: 25px;
     margin: 0;
     padding: 0; }
   .menu ul li {
@@ -66,11 +76,12 @@ body {
   	float: left;
     text-align: center;
     margin-top: 0px;
-    margin-left: 0px;
-    width: 12.5%;
+    margin-left: 10px;
+    width: 100px;
     height: 30px;
     list-style: none;
-    cursor: pointer; }
+    cursor: pointer;
+    font-size: .8em; }
   .menu ul li:nth-child(1) {
     border-bottom: 2px solid #3c763d; }
     .menu ul li:nth-child(1) a {
@@ -94,16 +105,16 @@ body {
     transition-duration: .3s; }
 
 .wea1 {
-  position: absolute;
-  top:25px;
-  left:535px;
+  position: relative;
+  margin-top:25px;
+  left:5%;
   height: 160px;
-  width: 290px;
+  width: 90%;
   background: #ccc;
   text-align: center;
   overflow: hidden; }
   .wea1 img {
-    position: absolute;
+    /*position: absolute;*/
     top: 0px;
     left: 0px;
     width: 100%; }
@@ -130,16 +141,15 @@ body {
        }
 
 .wea2 {
-  position: absolute;
-  top:365px;
-  left:535px;
+  position: relative;
+  margin-top:25px;
+  left:5%;
   height: 160px;
-  width: 290px;
+  width: 90%;
   text-align: center;
   background: #ccc;
   overflow: hidden; }
   .wea2 img {
-    position: absolute;
     top: 0px;
     left: 0px;
     width: 100%; }
@@ -166,11 +176,11 @@ body {
 
 
 .wea3 {
-  position: absolute;
-  top: 195px;
-  left: 535px;
+  position: relative;
+  margin-top: 25px;
+  left: 5%;
   height: 160px;
-  width: 290px;
+  width: 90%;
   text-align: center;
   /*background: #00cc99;*/
   background: #fff;
@@ -232,11 +242,12 @@ body {
   left: 50px; }
 
 .wea4 {
-  position: absolute;
-  top: 25px;
-  left: 25px;
-  height: 500px;
-  width: 500px;
+  position: relative;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  left: 5%;
+  height: 150px;
+  width: 90%;
   text-align: center;
   overflow: hidden;
    }
@@ -245,10 +256,10 @@ body {
   width: auto;
 }
   .wea4 img {
-    position: absolute;
+    /*position: absolute;*/
     top: 0px;
     left: 0px;
-    height: 100%; }
+    width: 100%; }
   .wea4 h1 {
     position: absolute;
     top: 10px;
@@ -273,29 +284,31 @@ body {
   height: 200px; }
 
 /*chart*/
+
 #c1{
-  position:absolute;
-  top:25px;
-  left:25px;
+  position:relative;
+  margin-top:25px;
+  left:5%;
   background: rgb(199,237,233);
 }
 #c2{
-  position:absolute;
-  top:25px;
-  left:430px;
+  position:relative;
+  margin-top:25px;
+  left:5%;
   background: rgb(175,215,237);
 }
 #c3{
-  position:absolute;
-  top:280px;
-  left:25px;
+  position:relative;
+  margin-top:25px;
+  left:5%;
   background: rgb(92,167,186);
   /*background: rgb(255,66,93);  红*/
 }
 #c4{
-  position:absolute;
-  top:280px;
-  left:430px;
+  position:relative;
+  margin-top:25px;
+  margin-bottom:25px;
+  left:5%;
   background: rgb(147,224,255);
 }
 
@@ -303,72 +316,73 @@ body {
 .chart{
   /*float: left;*/
   border-radius: 5px;
-  width:395px;
-  height: 245px;
+  width:90%;
+  height: 250px;
   text-align: center;
   cursor: pointer;
+  padding-top: 10px;
+}
+.chart h3{
+	position: relative;
+	margin-top: 10px
+  	font-size: 1em;
 }
 
-  .chart p{
-    position: absolute;
-    top:20px;
-    left:50px;
-    cursor: pointer;
-    font-size: 30px;
-  }
-  .chart p:hover{
-    color:#f96;
-  }
-.chart:hover{
-  background: #efefef;
-}
 
 .chart-bar{
   margin-left: 10px;
-  width:350px;
+  margin-top: 10px;
+  width:100%;
   height:200px;
   float: left;
+
 }
-  .chart-bar h1{
-      font-size: 18px;
-      display: none;
-    }
+.invisible-chart{
+	display: none;
+}
+	
+.chart-bar h1{
+  	font-size: 18px;
+  	display: none;
+}
 .chart-c{
   /*background: #000;*/
-  width:350px;
-  height:180px;
+  width:90%;
+  height:150px;
 }
   
 
 
 /*stat*/
 #stat{
-  position: absolute;
-  left:25px;
-  top:25px;
-  width:800px;
-  height:500px;
+  position: relative;
+  left:5%;
+  margin-top:25px;
+  margin-bottom:25px;
+  width:90%;
+  height:auto;
   background: rgb(199,237,233);
   border-radius:5px;
   padding: 10px;
 }
 
 #stat h1{
-  position: absolute;
+  position: relative;
   top:20px;
   left:20px;
-  margin:0px;
+  margin-bottom:20px;
   color: #666;
   font-size: 25px;
 }
 
 /*user-all*/
 #user-all{
-  position: absolute;
-  left:25px;
-  top:25px;
-  width:800px;
-  height:500px;
+  position: relative;
+  left:5%;
+  margin-top:25px;
+  margin-bottom:25px;
+  width:90%;
+  height:auto;
   background: rgb(175,215,237);
   border-radius:5px;
   padding: 10px;
@@ -380,11 +394,12 @@ body {
 
 /*user*/
 #user{
-  position: absolute;
-  left:25px;
-  top:25px;
-  width:800px;
-  height:500px;
+  position: relative;
+  left:5%;
+  margin-top:25px;
+  margin-bottom:25px;
+  width:90%;
+  height:auto;
   background: rgb(147,224,255);
   border-radius:5px;
   padding: 10px;
@@ -394,46 +409,40 @@ body {
 /*board*/
 
 #board1 {
-  height: 550px;
-  width: 850px;
+  width: 100%;
   background: #fff;
   display: block; }
   #board1 h1 {
     color: #fff; }
 
 #board3{
-  height: 550px;
-  width: 850px;
+  width: 100%;
   background: #fff;
 }
 #board4{
-  height: 550px;
-  width: 850px;
+  width: 100%;
   background: #fff;
 }
 #board5{
-  height: 550px;
-  width: 850px;
+  width: 100%;
   background: #fff;
 }
 #board6{
-  height: 550px;
-  width: 850px;
+  width: 100%;
   background: #fff;
 }
 #board7 {
-  height: 550px;
-  width: 850px;
+  width: 100%;
   background: #fff; }
 
 .board{
   display: none;
   position: absolute;
-  top: 250px;
+  top: 200px;
   left: 0%;
   /*width: 1000px;*/
   padding: 0px;
-  width: 1000px;
+  width: 100%;
   margin-bottom: 150px;
   height: auto;
   border: 2px solid #3c763d;
@@ -468,11 +477,12 @@ table thead tr th{
 
 /*user-one*/
 #user-one{
-  position: absolute;
-  left:25px;
-  top:25px;
-  width:800px;
-  height:500px;
+  position: relative;
+  left:5%;
+  margin-top:25px;
+  margin-bottom:25px;
+  width:90%;
+  height:auto;
   background: rgb(147,224,255);
   border-radius:5px;
   padding: 10px;
@@ -485,23 +495,27 @@ table thead tr th{
   margin-bottom: 50px; }
 
 .b7-logo {
+  position: relative;
   background: #000;
-  width: 100px;
-  height: 100px;
-  border-radius: 90px;
-  overflow: hidden; }
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+  overflow: hidden; 
+}
   .b7-logo img {
     position: absolute;
     left: 0px;
+    top:0px;
     width: auto;
-    height: 100px; }
+    height: 70px;
+    border-radius: 5px; }
   .b7-name h1{
     margin: 0px;
-    font-size: 25px;
+    font-size: .7em;
   }
-  .b7-auth h1{
+  .b7-auth h3{
     margin:0px;
-    font-size: 25px;
+    font-size: .7em;
   }
 
 .b7-right {
@@ -512,12 +526,13 @@ table thead tr th{
 
 .b7-li label {
   float: left;
-  font-size: 20px; }
+  font-size: .7em; }
 .b7-li p {
-  margin-left: 20px;
-  font-size: 20px; }
+  margin-left: 5px;
+  font-size: .7em; }
 
 .b7-bottom {
+	display: none;
   margin-top: 10px;
   text-align: center; }
   .b7-bottom button {
@@ -531,7 +546,7 @@ table thead tr th{
   position: absolute;
   top: -100%;
   left: 0px;
-  width: 850px;
+  width: 100%;
   height: 100%;
   background: #ccc;
   z-index: 10;
