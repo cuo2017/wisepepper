@@ -89,7 +89,7 @@ module.exports = {
 
 
 
-	// data mining
+	// data mining including Review
 
 	getDataByWeb: function(req,res,next){
 		
@@ -100,6 +100,10 @@ module.exports = {
 		var data = {
 			wd: String,
 			sd: String,
+			at: String,
+        	st: String,
+        	ah: String,
+        	sh: String,
 		}
 		http.get(url, function(response) {
 		    var html = '';
@@ -140,7 +144,36 @@ module.exports = {
 			        data.wd = data.wd.toFixed(2);
 			        data.sd = data.sd.toFixed(2);
 
+
+			        if(data.wd > 15 && data.wd < 25){
+			        	data.at = "2";
+			        }
+			        else if(data.wd > 25 && data.wd < 30 || data.wd > 10 && data.wd < 15){
+			        	data.at = "1";
+			        }
+			        else if(data.wd > 30 || data.wd < 10){
+			        	data.at = "0";
+			        }
+
+
+			        if(data.sd > 60 && data.sd < 90){
+			        	data.ah = "2";
+			        }
+			        else if(data.sd > 90 && data.sd < 101 || data.sd > 40 && data.sd < 60){
+			        	data.ah = "1";
+			        }
+			        else if(data.sd < 40){
+			        	data.ah = "0";
+			        }
+
+			        data.st = "2";
+			        data.sh = "2";
+
+
+
 			        return res.json(data);
+
+
 			    }else{
 			        console.log('无数据传入！');
 			    }
@@ -155,6 +188,9 @@ module.exports = {
 		// return res.json(listData);
 
 	},
+
+	// 环境综合测评
+	
 
 
 	getWeaByWeb:function(req,res,next){

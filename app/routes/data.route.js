@@ -27,4 +27,6 @@ module.exports =function(app){
 	// 获取weather数据
 	app.route('/getWeaByWeb')
 	.get(dataController.getWeaByWeb);
+
+	
 };

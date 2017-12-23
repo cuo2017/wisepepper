@@ -1,6 +1,4 @@
-/*Respnsive design*/
-@media screen and (min-width:1000px){
-
+@media screen and (max-width:1000px){
 body {
   padding: 0;
   margin: 0;
@@ -12,7 +10,7 @@ body {
   left: 0px;
   top: 0px;
   width: 100%;
-  height: 80px;
+  height: 100px;
   background: #3c763d;
   z-index: 2;
   border-bottom: 2px solid #3c763d;
@@ -22,66 +20,54 @@ body {
     position: absolute;
     right: 0px;
     top: 0px;
-    width: 100%; }
+    width: 100%;
+    display: none }
 
 .nav-bar {
-  position: relative;
-  margin:0 auto;
-  top: 30px;
+  	display: none;
    }
 .nav-bar-mobile{
-  display: none;
+	position: relative;
+  	margin:0 auto;
+  	top: 10px;
+}
+.nav-bar-mobile img{
+	display: block;
+	height: 100px;
+	width: 100px;
+}
+.nav-bar-mobile p{
+	margin-top: 30px;
+	font-size: 1.8em;
+	color:#fff;
 }
 
-.nav-logo {
-  cursor: pointer; }
-  .nav-logo img {
-    margin-top: -20px;
-    width: auto;
-    height: 80px; }
-  .nav-logo a {
-    width: auto;
-    height: 30px;
-    color: #fff;
-    font-size: 1.8em;
-    text-decoration: none; }
-
-.nav-title h1 {
-  margin: 0;
-  color: #fff;
-  font-size: 2em;
-   }
-
-.nav-user p {
-  margin-top: 20px;
-  color: #fff; }
-.nav-user img {
-  width: auto;
-  height: 40px; }
 
 
  
 .menu {
   position: fixed;
-  top: 0px;
+  top: 100px;
   left: 0px;
-  width: 120px;
-  height: 100%;
+  width: 100%;
+  height: 100px;
   background: #fff;
   border-right: 2px solid #3c763d; }
   .menu ul {
     position: absolute;
-    top: 80px;
+    top: 30px;
     left: 0px;
-    width: 120px;
-    height: auto;
+    width: 100%;
+    height: 100px;
     margin: 0;
     padding: 0; }
   .menu ul li {
+  	position: relative;
+  	float: left;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 0px;
     margin-left: 0px;
-    width: 120px;
+    width: 12.5%;
     height: 30px;
     list-style: none;
     cursor: pointer; }
@@ -90,7 +76,7 @@ body {
     .menu ul li:nth-child(1) a {
       color: #3c763d; }
   .menu ul li a {
-    font-size: 20px;
+    font-size: 1.5em;
     text-decoration: none;
     color: #666; }
   .menu ul li a:hover {
@@ -410,7 +396,6 @@ body {
 #board1 {
   height: 550px;
   width: 850px;
-  left:20%;
   background: #fff;
   display: block; }
   #board1 h1 {
@@ -419,38 +404,33 @@ body {
 #board3{
   height: 550px;
   width: 850px;
-  left:20%;
   background: #fff;
 }
 #board4{
   height: 550px;
   width: 850px;
-  left:20%;
   background: #fff;
 }
 #board5{
   height: 550px;
   width: 850px;
-  left:20%;
   background: #fff;
 }
 #board6{
   height: 550px;
   width: 850px;
-  left:20%;
   background: #fff;
 }
 #board7 {
   height: 550px;
   width: 850px;
-  left:20%;
   background: #fff; }
 
 .board{
   display: none;
   position: absolute;
-  top: 15%;
-  /*left: 15%;*/
+  top: 250px;
+  left: 0%;
   /*width: 1000px;*/
   padding: 0px;
   width: 1000px;
@@ -551,7 +531,7 @@ table thead tr th{
   position: absolute;
   top: -100%;
   left: 0px;
-  width: 100%;
+  width: 850px;
   height: 100%;
   background: #ccc;
   z-index: 10;
@@ -560,7 +540,7 @@ table thead tr th{
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 100%; }
+    height: 100%; }
 
 .remember {
   position: relative;
@@ -579,7 +559,7 @@ table thead tr th{
   width: 30px; }
   .checkbox input {
     margin: 0px;
-    height: 20px; }
+    }
 
 #r-name-err {
   display: none; }
@@ -608,15 +588,5 @@ table thead tr th{
 .input-err {
   border: 1px solid #D0011B !important; }
 
-/*# sourceMappingURL=style.css.map */
-
-
-
-
-
 
 }
-
-
-
-

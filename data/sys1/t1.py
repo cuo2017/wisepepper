@@ -6,7 +6,9 @@ import numpy as np
 import copy
 import csv
 import random
+
 import httplib
+import json
 
 def InfoEntCalc(Label):
     LabelNum = len(Label)
@@ -357,6 +359,7 @@ def grabTree(filename):
 
 def createDataSet():
     dataSet = []
+    # with open("./xunlian.csv", "rb") as csv_file:
     with open("./data/sys1/xunlian.csv", "rb") as csv_file:
         all_lines = csv.reader(csv_file)
         for one_line in all_lines:
@@ -387,34 +390,54 @@ def createTestDataSet():
 
 def main():
     Table, DatSet, Label, Dat, dataSet = createDataSet()
+
     # testdata,test_Table=createTestDataSet()
-    test_Table = ['tem', 'hum','rain','days']
-    testdata = [23,88,15,1]
     
-    #print(Dat)
+    test_Table = ['tem', 'hum','rain','days']
+    conn = httplib.HTTPConnection("localhost:8080")
+    conn.request("GET","/getDataByWeb")
+    r1 = conn.getresponse()
+    body = r1.read()
+    # body = json.dumps(body)
+    body1 = json.loads(body)
+    testdata = [23,89,15,1]
+    testdata[0] = body1['wd']
+    testdata[1] = body1['sd']
+    testdata[2] = 15
+    testdata[3] = 1
+
+    # print(testdata)
+
+
     labels_tmp = Table[:]
     DatOri = Dat[:]
     desicionTree = TreeGenerate(Dat, DatOri, Table)
+
     # storeTree(desicionTree, 'classifierStorage.txt')
     # desicionTree = grabTree('classifierStorage.txt')
     #print('desicionTree:\n', desicionTree)
+
     table_copy1 = copy.deepcopy(test_Table)
     table_copy2 = copy.deepcopy(test_Table)
     table_copy3 = copy.deepcopy(test_Table)
     table_copy4 = copy.deepcopy(test_Table)
     table_copy5 = copy.deepcopy(test_Table)
     table_copy6 = copy.deepcopy(test_Table)
+
     #print(table_copy1)
     #classifyResult, Accuracy = classifyAll(desicionTree, table_copy1, test_Dat)
     #print('Accuracy:', Accuracy)
     #treePlotter.createPlot(desicionTree)
     #print('classifyResult:',classifyResult)
+    
     myTree1 = Post(desicionTree,table_copy2)
     myTree = Post(myTree1,table_copy3)
+    
     #print(table_copy3)
     #classifyResult1, Accuracy1 = classifyAll(myTree, table_copy4, test_Dat)
     #print('Accuracy1:', Accuracy1)
     #print('mytree',myTree)
+    
     result = str(classify(myTree,test_Table,testdata))
     if result == '1.0':
         result2 = 'a'
@@ -422,7 +445,10 @@ def main():
         result2 = 'b'
     elif result == '3.0':
         result2 = 'c'
-    result2 = '3' + result2;
+    result2 = '3' + result2
+
+    
+
     print(result2)
 
 

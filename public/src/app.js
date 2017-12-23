@@ -88,7 +88,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 
 	   		var wea =  JSON.parse(data.data);
 
-	   		// console.log(wea.city);
+	   		console.log(wea);
 
 
 	   		// data resolving
@@ -97,7 +97,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
            	var weather = JSON.stringify(wea.data.forecast[0].type);
            	weather = weather.replace(/\"/g,"");//正则去掉双引号
 			// // moment.locale('zh-cn');
-   //         	// date = moment(date).format('LLLL');
+         	// date = moment(date).format('LLLL');
 
            	var temp1 = JSON.stringify(wea.data.forecast[0].low);
            	temp1 = temp1.replace(/\"/g,"");//正则去掉双引号
@@ -105,6 +105,14 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
            	temp2 = temp2.replace(/\"/g,"");//正则去掉双引号
            	var ptime = JSON.stringify(wea.data.forecast[0].date);
            	ptime = ptime.replace(/\"/g,"");//正则去掉双引号
+
+           	var notice = JSON.stringify(wea.data.forecast[0].notice);
+           	notice = notice.replace(/\"/g,"");
+           	var fx = JSON.stringify(wea.data.forecast[0].fx);
+           	fx = fx.replace(/\"/g,"");
+           	var pm25 = JSON.stringify(wea.data.pm25);
+           	var quality = JSON.stringify(wea.data.quality);
+           	var ganmao = JSON.stringify(wea.data.ganmao);
            	
 
            	$('#location').text(cityName);
@@ -112,6 +120,12 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
            	$('#temp2').text(temp2);
            	$('#ptime').text(ptime);
            	$('#weather').text(weather);
+           	$('#notice').text(notice);
+           	$('#fx').text(fx);
+           	$('#pm25').text(pm25);
+           	$('#quality').text(quality);
+           	$('#ganmao').text(ganmao);
+
            	
            	// lib/images/wea/snowy.png
            	if(weather == "多云" || weather == "阴"){
@@ -135,7 +149,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 
 	$scope.wea();
 
-	// Data mining
+	// Data mining including Review
 
 	$scope.dm = function(){
 		var api = '/getDataByWeb';
@@ -146,6 +160,33 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 			var sd = dm.sd + "%";
 			$('#at').text(wd);
 			$('#ah').text(sd);
+
+			
+
+			var review = {
+				at: String,
+	        	st: String,
+	        	ah: String,
+	        	sh: String,
+			};
+		// 可用遍历会更好
+			if(dm.at == 0){review.at = "不适宜";}
+			else if(dm.at == 1){review.at = "较适宜";}
+			else if(dm.at == 2){review.at = "适宜";}
+			if(dm.ah == 0){review.ah = "不适宜";}
+			else if(dm.ah == 1){review.ah = "较适宜";}
+			else if(dm.ah == 2){review.ah = "适宜";}
+			if(dm.st == 0){review.st = "不适宜";}
+			else if(dm.st == 1){review.st = "较适宜";}
+			else if(dm.st == 2){review.st = "适宜";}
+			if(dm.sh == 0){review.sh = "不适宜";}
+			else if(dm.sh == 1){review.sh = "较适宜";}
+			else if(dm.sh == 2){review.sh = "适宜";}
+
+			$('#at1').text(review.at);
+			$('#ah1').text(review.ah);
+			$('#st1').text(review.st);
+			$('#sh1').text(review.sh);
 		});
 	};
 	$scope.dm();
@@ -558,8 +599,8 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 			sortOrder: "asc", //排序方式
 			sidePagination: "client", //客户端分页
 			pageNumber:1,                       //初始化加载第一页，默认第一页
-	        // pageSize: 10,                       //每页的记录行数（*）
-	        pageList: [10],        //可供选择的每页的行数（*）
+	        pageSize: 7,                       //每页的记录行数（*）
+	        pageList: [7],        //可供选择的每页的行数（*）
 	        search: true,//客户端搜索
 	        strictSearch: true,
 	        minimumCountColumns: 2,             //最少允许的列数
@@ -595,8 +636,8 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 			sortOrder: "asc", //排序方式
 			sidePagination: "client", //客户端分页
 			pageNumber:1,                       //初始化加载第一页，默认第一页
-	        pageSize: 10,                       //每页的记录行数（*）
-	        pageList: [10],        //可供选择的每页的行数（*）
+	        pageSize: 7,                       //每页的记录行数（*）
+	        pageList: [7],        //可供选择的每页的行数（*）
 	        search: true,//客户端搜索
 	        strictSearch: true,
 	        minimumCountColumns: 2,             //最少允许的列数
@@ -643,12 +684,12 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 			sortOrder: "asc", //排序方式
 			sidePagination: "client", //客户端分页
 			pageNumber:1,                       //初始化加载第一页，默认第一页
-	        pageSize: 10,                       //每页的记录行数（*）
-	        pageList: [10],        //可供选择的每页的行数（*）
+	        pageSize: 7,                       //每页的记录行数（*）
+	        // pageList: [10],        //可供选择的每页的行数（*）
 	        search: true,//客户端搜索
 	        strictSearch: true,
 	        minimumCountColumns: 2,             //最少允许的列数
-	        height:525,
+	        // height:380,
 	        showRefresh: true,  //刷新
 	        // showColumns: true,  
 	        clickToSelect: true, //启用点击选中行
