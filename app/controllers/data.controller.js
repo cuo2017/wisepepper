@@ -3,9 +3,13 @@ var http = require('http');
 var cheerio = require('cheerio');
 //爬虫
 var request = require('request');
+var moment = require('moment');
 
 var User = mongoose.model('user');
+
 var Data = mongoose.model('data');
+
+
 
 module.exports = {
 	// 存取data
@@ -189,7 +193,6 @@ module.exports = {
 
 	},
 
-	// 环境综合测评
 	
 
 
@@ -220,6 +223,93 @@ module.exports = {
            	return res.json(stdout);
 
 		});
+
+	},
+
+	// 存储环境信息数据
+
+	saveData:function(req,res,next){
+		var url = 'http://www.nmc.cn/publish/forecast/ASC/san-tai.html';
+		var listData  = [];//wd
+		var listData2 = [];//sd
+		var data = {
+			date: String,
+			at: String,
+			ah: String,
+			st: String,
+			sh: String,
+			warning: String,
+			degree: String,
+		};
+		http.get(url, function(response) {
+		    var html = '';
+		    // 获取页面数据
+		    response.on('data', function(data) {
+		        html += data;
+		    });
+		    // 数据获取结束
+		    response.on('end', function() {
+		        // 通过过滤页面信息获取实际需求的轮播图信息
+			    
+		        if (html) {
+			        // 沿用JQuery风格，定义$
+			        var $ = cheerio.load(html);
+			        var list = $('#day0');
+
+			        list.find('#day0 .wd div').each(function(item) {
+
+			            var wd = $(this).text();
+			            listData.push({
+			                wd : wd,
+			            });
+			        });
+
+			        list.find('#day0 .xdsd div').each(function(item) {
+
+			            var sd = $(this).text();
+			            listData2.push({
+			                sd : sd,
+			            });
+			        });
+
+			        // console.log(listData[1].wd);
+
+			        data.at = (parseFloat(listData[1].wd) + parseFloat(listData[3].wd) + parseFloat(listData[5].wd) + parseFloat(listData[7].wd) )/4;
+			        data.ah = (parseFloat(listData2[1].sd) + parseFloat(listData2[3].sd) + parseFloat(listData2[5].sd) + parseFloat(listData2[7].sd) )/4;
+
+			        data.at = data.at.toFixed(2);
+			        data.ah = data.ah.toFixed(2);
+			        data.st = "-";
+			        data.sh = "-";
+			        var myDate = new Date();
+			        data.date = moment(myDate).subtract(10, 'days').calendar();
+			        data.warning = "-";
+			        data.degree = "-";
+
+			        
+			        
+
+			        console.log(data);
+			        var data1 = new Data(data);
+			        data1.save(function(err,docs){
+			        	console.log("添加环境数据成功");
+			        });
+
+
+
+			        return res.json(data);
+
+
+			    }else{
+			        console.log('无数据传入！');
+			    }
+		        
+		    });
+		}).on('error', function() {
+		    console.log('获取数据出错！');
+		});
+
+		
 
 	},
 

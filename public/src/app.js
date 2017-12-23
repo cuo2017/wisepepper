@@ -12,73 +12,18 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 	//api:https://api.seniverse.com/v3/weather/now.json?key=5dj6pbdppzrc72kp&location=chengdu&language=zh-Hans&unit=c
 	// new api:http://www.sojson.com/open/api/weather/json.shtml?city=北京
 
+	// user-information
+
+
+
+
+
+
 	// // -weather--report-
 	$scope.wea = function(){
 		
 
-	// 	// 没解决跨域问题
-	// 	var api = 'http://www.sojson.com/open/api/weather/json.shtml?city=北京';
-	// 	$http.get(api).then(function(data){
-	// 			var length = data.data.length;	
-	// 			console.log(length);
-	// 	});
-
-
-		//weather:http://www.weather.com.cn/data/sk/101010100.html
-		// 雅虎yql：雅虎提供的jsonp代理，用以解决jsonp获取json格式数据的数据格式问题。
-	  	// 
-
-	  	// $.ajax({    
-	   //      url: 'http://query.yahooapis.com/v1/public/yql',    
-	   //      dataType: 'jsonp',    
-	   //      data: {    
-	   //          q: "select * from json where url=\"http://www.sojson.com/open/api/weather/json.shtml?city=成都\"",    
-	   //          format: "json"    
-	   //      },    
-	   //      success: function (data) { 
-
-	        	// data resolving
-	   //         	var cityName = JSON.stringify(data.query.results.json.city);//远程json数据放在query.results下 
-	   //         	cityName = cityName.replace(/\"/g,"");
-	   //         	var weather = JSON.stringify(data.query.results.json.data.forecast[0].type);
-	   //         	weather = weather.replace(/\"/g,"");//正则去掉双引号
-				// // moment.locale('zh-cn');
-	   //         	// date = moment(date).format('LLLL');
-
-	   //         	var temp1 = JSON.stringify(data.query.results.json.data.forecast[0].low);
-	   //         	temp1 = temp1.replace(/\"/g,"") ;
-	   //         	var temp2 = JSON.stringify(data.query.results.json.data.forecast[0].high);
-	   //         	temp2 = temp2.replace(/\"/g,"") ;
-	   //         	var ptime = JSON.stringify(data.query.results.json.data.forecast[0].date);
-	   //         	ptime = ptime.replace(/\"/g,"");
-	           	
-	   //         	console.log(JSON.stringify(data));
-
-	   //         	$('#location').text(cityName);
-	   //         	$('#temp1').text(temp1);
-	   //         	$('#temp2').text(temp2);
-	   //         	$('#ptime').text(ptime);
-	   //         	$('#weather').text(weather);
-	           	
-	   //         	// lib/images/wea/snowy.png
-	   //         	if(weather == "多云"){
-	   //         		$('.wea1 img').attr('src','lib/images/wea/cloudy.png');
-	   //         	}
-	   //         	else if(weather == "大雾"){
-	   //         		$('.wea1 img').attr('src','lib/images/wea/foggy.png');
-	   //         	}
-	   //         	else if(weather == "小雨"){
-	   //         		$('.wea1 img').attr('src','lib/images/wea/rainy.png');
-	   //         	}
-	   //         	else if(weather == "小雪"){
-	   //         		$('.wea1 img').attr('src','lib/images/wea/snowy.png');
-	   //         	}
-	   //         	else if(weather == "晴"){
-	   //         		$('.wea1 img').attr('src','lib/images/wea/sunning.png');
-	   //         	}
-
-	   //      }    
-	   //  });
+	
 
 	   var url = '/getWeaByWeb';
 	   $http.get(url).then(function(data){
@@ -88,7 +33,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 
 	   		var wea =  JSON.parse(data.data);
 
-	   		console.log(wea);
+	   		// console.log(wea);
 
 
 	   		// data resolving
@@ -154,7 +99,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 	$scope.dm = function(){
 		var api = '/getDataByWeb';
 		$http.get(api).then(function(data){
-			console.log(data.data);
+			// console.log(data.data);
 			var dm = data.data;
 			var wd = dm.wd + "°C";
 			var sd = dm.sd + "%";
@@ -197,19 +142,25 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 	$scope.rep = function(){
 		var api = '/getDataBySys1';
 		$http.get(api).then(function(data){
-			console.log(data.data);
+			// console.log(data.data);
 			var report = data.data;
 			$('#rep-type').text(report.type);
 			$('#rep-degree').text(report.degree);
 
 			if(report.type == "干旱"){
-				$('.wea4 img').attr('src','lib/images/disaster/drought.png');
+				$('.wea4 img').attr('src','lib/images/new-disaster/3.png');
 			}
 			else if(report.type == "冻害"){
-				$('.wea4 img').attr('src','lib/images/disaster/frosty.png');
+				$('.wea4 img').attr('src','lib/images/new-disaster/4.png');
 			}
 			else if(report.type == "锈病"){
-				$('.wea4 img').attr('src','lib/images/disaster/rust.png');
+				$('.wea4 img').attr('src','lib/images/new-disaster/5.png');
+			}
+			else if(report.type == "虫害"){
+				$('.wea4 img').attr('src','lib/images/new-disaster/2.png');
+			}
+			else if(report.type == "正常"){
+				$('.wea4 img').attr('src','lib/images/new-disaster/1.png');
 			}
 
 			// 缺少虫害图片
@@ -580,6 +531,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 	};
 	$scope.updateUser = function(content){
 		$http.post('/updateUser',content);
+		console.log('已经上传');
 	};
 	$scope.findUser = function(content){
 		$http.post('/findUser',content).then(function(data){
@@ -685,7 +637,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 			sidePagination: "client", //客户端分页
 			pageNumber:1,                       //初始化加载第一页，默认第一页
 	        pageSize: 7,                       //每页的记录行数（*）
-	        // pageList: [10],        //可供选择的每页的行数（*）
+	        pageList: [7],        //可供选择的每页的行数（*）
 	        search: true,//客户端搜索
 	        strictSearch: true,
 	        minimumCountColumns: 2,             //最少允许的列数
@@ -696,21 +648,18 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 	        uniqueId: "number",   //每一行的唯一标识，一般为主键列
 			columns:[{
 				field:"date",
-				title:"日期",
+				title:"统计日期",
 			},{
-		        field: 'name',
-		        title: '姓名'
-		    },{
-		        field: 'data.airTem',
+		        field: 'at',
 		        title: '空气温度'
 		    },{
-		        field: 'data.airHum',
+		        field: 'ah',
 		        title: '空气湿度'
 		    },{
-		        field: 'data.soilTem',
+		        field: 'st',
 		        title: '土壤温度'
 		    },{
-		        field: 'data.soilHum',
+		        field: 'sh',
 		        title: '土壤湿度'
 		    },{
 		    	field: 'warning',
@@ -753,11 +702,14 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 						$scope.username = obj[0].name;
 						$cookies.put('userName', obj[0].name);
 						$scope.username = $cookies.get('userName');
+
 					}
 					else{
 						$cookies.remove("userName");
 					}
 					// alert($cookies.get('userName'));
+					window.location.reload();
+
 				}
 				else{
 					// 摇晃
@@ -781,7 +733,6 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 		  	// 提示错误
 		}
 	}
-
 
 	function check_register(){
 		var re_phone = /1{1}[0-9]{10}$/; //1开头，共11个数字
@@ -842,10 +793,12 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 		var cookie = $cookies.get('userName');
 		if(!cookie){
 			$scope.username = '藤椒侠';
-			alert('没有登录用户，使用默认用户');
+			// alert('没有登录用户，使用默认用户');
 		}
 		else{
 			$scope.username = $cookies.get('userName');
+			$('.sign').css('top', '-100%');
+
 			// alert('有名字');
 		}
 		
@@ -998,8 +951,10 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 		if( flag == 0){
 			$('.chart').css('display', 'none');
 			$(this).css('display','block').animate({
-				'width':'100%',
-				'height':'100%',
+				'left':'25px',
+				'top':'25px',
+				'width':'800px',
+				'height':'500px',
 			}, 200);
 			$('.chart-bar').animate({
 				'margin-top':'70px'}, 200);
@@ -1021,9 +976,29 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 		/* Act on the event */
 		if( flag == 1){
 			$('.chart').css('display', 'block');
+			var left;
+			var top;
+			if($(this).attr('name') == 'c1'){
+				left = '25px';
+				top = '25px';
+			}
+			else if($(this).attr('name') == 'c2'){
+				left = '430px';
+				top = '25px';
+			}
+			else if($(this).attr('name') == 'c3'){
+				left = '25px';
+				top = '280px';
+			}
+			else if($(this).attr('name') == 'c4'){
+				left = '430px';
+				top = '280px';
+			}
 			$(this).parent('div').css('display','block').animate({
-				'width':'490px',
-				'height':'275px',
+				'top':top,
+				'left':left,
+				'width':'395px',
+				'height':'245px',
 			}, 200);
 			$('.chart-bar').animate({
 				'margin-top':'0px'}, 200);
@@ -1038,6 +1013,10 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 
 	
 	});
+
+
+
+
 	
 	
 		// menu click
@@ -1307,12 +1286,107 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 		$('.sign').animate({
 			"top": "0%",
 		}, 300);
+		$cookies.remove("userName");
+
+
 			
 	});
 
 
 
-	// 天气信息
+	// 
+
+
+
+
+
+
+	// 个人信息读取
+	$scope.userOne = function(){
+		var url = '/findUser';
+		var name = $scope.username;
+		var data = {
+			name: String,
+		}
+		data.name = name;
+		if(name!= null){
+			$http.post(url,data).then(function(data){
+				// console.log(data.data[0]);
+				var info  = data.data[0];
+				$scope.name = info.name;
+				$scope.auth = info.auth;
+				$scope.phone = info.phone;
+				$scope.password = info.password;
+				$scope.location = info.location;
+				$scope.pepperNumber = info.pepperNumber;
+
+				// 更新用
+				$scope.number = info.number;
+			});
+
+
+			
+		}
+		else{
+			console.log(name);
+		}
+
+	};
+
+	$scope.userOne();
+
+
+	// 个人信息修改
+	$scope.userUpdate = function(){
+		var url = '/updateUser';
+		var num = $scope.number;
+		var data = {
+			"number" : num,
+			"body" : {
+				"name" : $('#b7-name').val(),
+				"auth" : $('#b7-auth').val(),
+				"phone": $('#b7-phone').val(),
+				"password": $('#b7-password').val(),
+				"location": $('#b7-location').val(),
+				"pepperNumber": $('#b7-pepperNumber').val(),
+			}
+		};
+
+		if($scope.number != null){
+			$scope.updateUser(data);
+			console.log(data);
+		}
+		else{
+			console.log('$scope.number = null');
+		}
+
+
+	};
+
+
+	var b7_flag = 0;
+	$('#b7-update').click(function(event) {
+		/* Act on the event */
+		if(b7_flag == 0){
+
+			$(this).removeClass('btn-warning').addClass('btn-success').text('确认修改');
+			b7_flag = 1;
+			$('#user-one input')
+			.removeAttr('disabled');
+			
+		}
+		else{
+			$scope.userUpdate();
+			$cookies.remove("userName");
+			$(this).removeClass('btn-success').addClass('btn-warning').text('修改');
+			b7_flag = 0;
+			$('#user-one input').attr('disabled','disabled');
+			alert("修改成功");
+			window.location.reload();
+
+		}
+
+	});
 
 
 }]);

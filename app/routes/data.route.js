@@ -28,5 +28,9 @@ module.exports =function(app){
 	app.route('/getWeaByWeb')
 	.get(dataController.getWeaByWeb);
 
-	
+
+	// 存储环境数据
+	app.route('/saveData')
+	.get(dataController.saveData);
+
 };

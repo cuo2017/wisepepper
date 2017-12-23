@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>智慧藤椒|传统农业的信息化革命</title>
+	<link rel="shortcut icon" type="image/x-icon" href="lib/images/icon.ico">
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap-table/dist/bootstrap-table.min.css">
 	
@@ -170,8 +171,8 @@
 
 					</ul>
 				</div>
-
 			</div>
+
 			<div class="wea2 wea">
 				<img src="lib/images/wea/snowy.png">
 				<h1>环境指数</h1>
@@ -213,7 +214,7 @@
 				</div>
 			</div>
 			<div class="wea4 wea">
-				<img src="lib/images/disaster/frosty.png">
+				<img src="lib/images/new-disaster/1.png">
 				<h1>灾害预报 </h1>
 				<div class="wea4-report">
 					<ul>
@@ -229,7 +230,7 @@
 		<div class="board" id="board3">
 			<!-- 1、温度 2、湿度 3、温度湿度雷达图 4、某种灾害预警概率极点图 -->
 			<div id="c1" class="chart">
-				<p style="display: none;"><</p>
+				<p name='c1' style="display: none;"><</p>
 				<h3>温度（°C）</h3>
 				<div class="chart-bar">
 					<h1>最近一周温度走势</h1>
@@ -245,7 +246,7 @@
 				</div>
 			</div>
 			<div id="c2" class="chart">
-				<p style="display: none;"><</p>
+				<p name='c2' style="display: none;"><</p>
 				<h3>湿度（%）</h3>
 				<div class="chart-bar">
 					<h1>最近一周湿度走势</h1>
@@ -261,12 +262,17 @@
 				</div>
 			</div>
 			<div id="c3" class="chart">
+				<p name='c3' style="display: none;"><</p>
 				<h3>灾害（%）</h3>
 				<div class="chart-c">
 					<canvas id="chart3"></canvas>
 				</div>
+				<div class="chart-bar invisible-chart" style="display: none;">
+					
+				</div>
 			</div>
 			<div id="c4" class="chart">
+				<p name='c4' style="display: none;"><</p>
 				<h3>健康分析（%）</h3>
 				<div class="chart-c">
 					<canvas id="chart4"></canvas>
@@ -274,12 +280,7 @@
 			</div>
 			
 
-			<!-- <div id="c4" class="chart">
-				<h3></h3>
-				<div class="chart-c">
-					<canvas id="chart4"></canvas>
-				</div>
-			</div> -->
+		
 		</div>
 		<!-- 信息统计statistics -->
 
@@ -355,14 +356,19 @@
 						<div class="row">
 							<div class="col-xs-3"></div>
 							<div class="col-xs-6 b7-name">
-								<h1>姓名:{{username}}</h1>
+								<h1>姓名:
+								<input id="b7-name" type="text" class="form-control" disabled="true" ng-value="name"></input>
+								</h1>
+
 							</div>
 							<div class="col-xs-3"></div>
 						</div>
 						<div class="row">
 							<div class="col-xs-3"></div>
 							<div class="col-xs-6 b7-auth">
-								<h3>权限:开发权限</h3>
+								<h3>权限:
+								<input id="b7-auth" type="text" class="form-control" disabled="disabled" ng-value="auth"></input>
+								</h3>
 							</div>
 							<div class="col-xs-3"></div>
 						</div>
@@ -373,25 +379,28 @@
 							<li>
 								<div class="b7-li">
 									<label for="phone">电话:</label>
-									<p name="phone">18280470495</p>
+									<input id="b7-phone" type="text" class="form-control" disabled="disabled" ng-value="phone" name="phone"></input>
 								</div>
 							</li>
 							<li>
 								<div class="b7-li">
 									<label for="pass">密码:</label>
-									<p name="pass">123456</p>
+									<!-- <p name="pass">{{password}}</p> -->
+									<input id="b7-password" type="text" class="form-control" disabled="disabled" ng-value="password" name="pass"></input>
 								</div>
 							</li>
 							<li>
 								<div class="b7-li">
 									<label for="address">地址:</label>
-									<p name="address">三台县平安镇平安乡3区13号</p>
+									<!-- <p name="address">{{location}}</p> -->
+									<input id="b7-location" type="text" class="form-control" disabled="disabled" ng-value="location" name="address"></input>
 								</div>
 							</li>
 							<li>
 								<div class="b7-li">
 									<label for="pepperNumber">拥有藤椒:</label>
-									<p name="pepperNumber">5 亩</p>
+									<!-- <p name="pepperNumber">{{pepperNumber}}</p> -->
+									<input id="b7-pepperNumber" type="text" class="form-control" disabled="disabled" ng-value="pepperNumber" name="pepperNumber"></input>
 								</div>
 							</li>
 						</ul>
@@ -401,7 +410,7 @@
 					<div class="col-sm-4"></div>
 					<div class="col-sm-4">
 						<div class="b7-bottom">
-							<button class="btn btn-lg btn-warning">修改</button>
+							<button id="b7-update" class="btn btn-lg btn-warning">修改</button>
 						</div>
 					</div>
 					<div class="col-sm-4"></div>

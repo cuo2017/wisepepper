@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var moment = require('moment');
 
 module.exports = function(){
 	var app =	express();
@@ -11,7 +12,35 @@ module.exports = function(){
 	require('../app/routes/user.route.js')(app);
 	require('../app/routes/data.route.js')(app);
 
+	// 定时保存环境信息
+
+	var period = 1000*1;
+	function saveData(){
+		var exec = require('child_process').exec;
+		var cmdStr = "curl localhost:8080/saveData";
+		exec(cmdStr,function(err,stdout,stderr){
+			if(err){
+				console.log('save weather api error:'+stderr);
+			}
+			else{
+				var date = new Date();
+				date = moment(date).format('LLL');
+				console.log(date + " 成功保存环境数据");
+			}
+		});
+	}
+	var myInterval = setInterval(saveData, 1000, "Interval");
+	function  myfunc(Interval){
+    	console.log("myfunc  "+Interval);
+	}
+
+	function  stopInterval(){
+	    clearTimeout(myInterval);
+	 //myInterval.unref();
+	}
+	setTimeout(stopInterval,900);
 	
+
 
 	//404
 	app.use(function(req, res, next){
