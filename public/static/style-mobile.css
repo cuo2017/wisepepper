@@ -438,7 +438,7 @@ body {
 .board{
   display: none;
   position: absolute;
-  top: 200px;
+  top: 120px;
   left: 0%;
   /*width: 1000px;*/
   padding: 0px;
