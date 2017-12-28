@@ -49,7 +49,7 @@ module.exports = {
 	findUser:function(req,res,next){
 		var content = req.body;
 		User.find(content).exec(function(err,docs){
-				return res.json(docs);
+			return res.json(docs);
 		});
 	},
 

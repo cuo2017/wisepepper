@@ -1075,6 +1075,11 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 			$('.board').hide();
 			$('#board7').show();
 		});
+		$('.menu ul li:nth-child(9)').click(function(event) {
+			/* Act on the event */
+			$('.board').hide();
+			$('#board8').show();
+		});
 		
 	})
 	

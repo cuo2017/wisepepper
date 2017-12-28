@@ -406,6 +406,15 @@ body {
 
 
 /*board*/
+#board8{
+  height: 550px;
+  width: 850px;
+  left:20%;
+  background: #fff;
+  /*display: block;*/
+
+}
+
 
 #board1 {
   height: 550px;
@@ -542,6 +551,20 @@ table thead tr th{
   text-align: center; }
   .b7-bottom button {
     width: 200px; }
+
+
+/*地图*/
+#container{
+  position: absolute;
+  left:25px;
+  top:25px;
+  width:800px;
+  height:500px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin:0;
+  font-family:"微软雅黑";
+}
 
 
 

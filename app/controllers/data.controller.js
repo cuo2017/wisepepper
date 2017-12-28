@@ -44,8 +44,8 @@ module.exports = {
 
 	getDataBySys1: function(req,res,next){
 		var exec = require('child_process').exec;
-		var cmdStr = "python ./data/sys1/t1.py";
-		// 获取sys1里面的灾害预报
+		var cmdStr = "python ./data/sys1/xiangsi.py";
+		// 获取sys2里面的灾害预报
 		exec(cmdStr,function(err,stdout,stderr){
 			if(err){
 				console.log('get weather api error:'+stderr);
@@ -73,18 +73,25 @@ module.exports = {
 						report.type = '虫害';
 						break;
 				};
-				switch (result[1]) {
-					case 'a':
-						report.degree = '轻微';
-						break;
-					case 'b':
-						report.degree = '中等';
-						break;
-					case 'c':
-						report.degree = '严重';
-						break;
-				};
-				
+				// switch (result[1]) {
+				// 	case 'a':
+				// 		report.degree = '轻微';
+				// 		break;
+				// 	case 'b':
+				// 		report.degree = '中等';
+				// 		break;
+				// 	case 'c':
+				// 		report.degree = '严重';
+				// 		break;
+				// };
+				var i = 3;
+				var degree = 0;
+				for(i;i<8;i++){
+					var b = result[i].toString();
+					degree += b;
+				}
+				degree *=100;
+				report.degree = degree + "%";
 				return res.json(report);
 			}
 			
