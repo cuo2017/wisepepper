@@ -41,7 +41,7 @@
 
 
 			<div class="sign-intro">
-				<h1>为农业信息化设计</h1>
+				<h1>智慧藤椒</h1>
 				<p>智慧藤椒是一款开放开源的信息化农业管理平台，你可以在此获取藤椒作物的实时监控与信息记录，并能获取经过了深度学习算法获得的灾害预报以及健康分析数据。</p>
 			</div>
 
@@ -94,7 +94,7 @@
 			</div>
 
 
-			<img src="lib/images/bg5.png">
+			<img src="lib/images/bg1.png">
 		</div>
 
 
@@ -170,7 +170,7 @@
 				<li><a>用户总表</a></li>
 				<li><a>用户管理</a></li>
 				<li><a>个人信息</a></li>
-				<li><a>地图</a></li>
+				<li><a>地理位置</a></li>
 				<li><a id="signout">退出登录</a></li>
 			</ul>
 		</div>
@@ -736,7 +736,22 @@
 			map.addOverlay(marker);              // 将标注添加到地图中
 			map.panTo(new_point); 
 			map.panBy(400,250);
+
+
+			// 104.940202, 31.142979
+			var point2 = new BMap.Point(104.940202,31.142979);
+			var marker2 = new BMap.Marker(point2);
+			map.addOverlay(marker2);
+
+			var opts = {    
+			    width : 250,     // 信息窗口宽度    
+			    height: 200,     // 信息窗口高度    
+			    title : "藤椒基地"  // 信息窗口标题   
+			}    
+			var infoWindow = new BMap.InfoWindow("三台县前锋镇杨五沟村三社", opts);  // 创建信息窗口对象    
+			map.openInfoWindow(infoWindow, point2);      // 打开信息窗口
 		}
+
 
 	</script>
 

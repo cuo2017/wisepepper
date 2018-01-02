@@ -867,6 +867,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 		$http.post("/findUser",content).then(function(data){
 			// console.log(data.data);
 			var user = data.data[0];
+			// $(".menu ul li").css('display', 'none');
 			switch(user.auth){
 				case "开发权限":
 					$(".menu ul li").css('display', 'block');
@@ -898,6 +899,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 					$(".menu ul li:nth-child(9)").css('display', 'block');
 					break;
 				default:
+					$(".menu ul li").css('display', 'block');
 					break;
 			}
 
@@ -1264,12 +1266,17 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 				pepperNumber:$('#add-pepperNumber-all').val(),
 			};
 			// alert(content.password);
-			console.log(content);
+			// console.log(content);
 			$scope.addUser(content);
+			// alert("添加用户成功");
 		});
 		$('#addModal-all').modal('hide');
 		window.location.reload();
 		// alert($('#add-auth').val());
+		// $scope.getTable();
+		// $("#table-all").bootstrapTable("refresh",{
+		// 	url:"/getUser"
+		// });
 	});
 
 
@@ -1370,6 +1377,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 		}
 		else{
 			alert('一次只能修改一位用户的信息，请您重新勾选用户');
+			
 		}
 	});
 
