@@ -1377,7 +1377,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 		}
 		else{
 			alert('一次只能修改一位用户的信息，请您重新勾选用户');
-			
+
 		}
 	});
 
