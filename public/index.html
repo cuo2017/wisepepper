@@ -24,12 +24,34 @@
 	<meta charset="utf-8">	
 </head>
 <body ng-app="wp" ng-controller="wpController">
+
+
+	<div class="loading">
+		<div class="loading-bar">
+			<div class="loading-img">
+				<div class="loading-progress"></div>
+				<img src="lib/images/loading2.png">
+			</div>
+			
+		</div>
+	</div>
 	
-	<div class="container-fluid">
+	<div class="all container-fluid">
 		<div class="sign">
+
+
+			<div class="sign-intro">
+				<h1>为农业信息化设计</h1>
+				<p>智慧藤椒是一款开放开源的信息化农业管理平台，你可以在此获取藤椒作物的实时监控与信息记录，并能获取经过了深度学习算法获得的灾害预报以及健康分析数据。</p>
+			</div>
+
+
+
 			<div class="htmleaf-container">
 				<div id="wrapper" class="login-page">
-				  	<div id="login_form" class="form">
+				  	
+				  	<div id="login_form" class="signbox form">
+				    	
 				    	<form class="register-form">
 				      		<input type="text" placeholder="用户名" id="r_user_name"/>
 				      		<div id="r-name-err" class="form-err">
@@ -70,7 +92,9 @@
 				  	</div>
 				</div>
 			</div>
-			<img src="lib/images/123.png">
+
+
+			<img src="lib/images/bg5.png">
 		</div>
 
 
@@ -146,8 +170,8 @@
 				<li><a>用户总表</a></li>
 				<li><a>用户管理</a></li>
 				<li><a>个人信息</a></li>
-				<li><a id="signout">退出登录</a></li>
 				<li><a>地图</a></li>
+				<li><a id="signout">退出登录</a></li>
 			</ul>
 		</div>
 
@@ -692,6 +716,7 @@
 	<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.js"></script>
 	<script type="text/javascript" src="lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
 
+	<script type="text/javascript" src="src/load.js"></script>
 	<script type="text/javascript" src="src/app.js"></script>
 
 

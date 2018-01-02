@@ -690,26 +690,39 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 		if(r_phone && r_pass){
 			$http.post('/findUser',content).then(function(data){
 				console.log(data.data);
-				var obj = data.data
-				if(pass == obj[0].password){
-					$("#phone").val("").removeClass('input-suc');
-				  	$("#password").val("").removeClass('input-suc');
-				  	$('.sign').animate({
-						"top": "-100%",
-					}, 300);
-					// alert($('#remember').val());
-					if($('#remember').val() == 'on'){
-						$scope.username = obj[0].name;
-						$cookies.put('userName', obj[0].name);
-						$scope.username = $cookies.get('userName');
+				var obj = data.data;
+				if(!jQuery.isEmptyObject(obj)){
+					if(pass == obj[0].password){
+						$("#phone").val("").removeClass('input-suc');
+					  	$("#password").val("").removeClass('input-suc');
+					  	$('.sign').animate({
+							"top": "-100%",
+						}, 300);
+						// alert($('#remember').val());
+						if($('#remember').val() == 'on'){
+							$scope.username = obj[0].name;
+							$cookies.put('userName', obj[0].name);
+							$scope.username = $cookies.get('userName');
+
+						}
+						else{
+							$cookies.remove("userName");
+						}
+						// alert($cookies.get('userName'));
+						window.location.reload();
 
 					}
 					else{
-						$cookies.remove("userName");
+						// 摇晃
+						$("#login_form").removeClass('shake_effect');  
+					  	setTimeout(function(){
+					   		$("#login_form").addClass('shake_effect')
+					  	},1);
+					  	// 提示错误
+					  	$("#password").addClass('input-err');
+						$('#pass-err').css('display', 'block').html('密码不正确');
+						$("#password").removeClass('input-suc');
 					}
-					// alert($cookies.get('userName'));
-					window.location.reload();
-
 				}
 				else{
 					// 摇晃
@@ -718,10 +731,12 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 				   		$("#login_form").addClass('shake_effect')
 				  	},1);
 				  	// 提示错误
-				  	$("#password").addClass('input-err');
-					$('#pass-err').css('display', 'block').html('密码不正确');
-					$("#password").removeClass('input-suc');
+				  	$("#phone").addClass('input-err');
+					$('#phone-err').css('display', 'block').html('用户名不正确');
+					$("#phoneword").removeClass('input-suc');
 				}
+				
+				
 			});
 		}
 		else{
@@ -733,6 +748,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 		  	// 提示错误
 		}
 	}
+
 
 	function check_register(){
 		var re_phone = /1{1}[0-9]{10}$/; //1开头，共11个数字
@@ -757,15 +773,47 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 					phone:phone,
 					auth:"普通用户",
 				};
-				console.log(content);
-				$scope.addUser(content);
+				var source1 = {
+					name:name,
+				};
+				var source2 = {
+					phone:phone,
+				};
+				var preUser = data.data;
+				var result1 = $scope.traverseUser(preUser,source1);
+				var result2 = $scope.traverseUser(preUser,source2);
+				// console.log(result2);
+				if(jQuery.isEmptyObject(result1[0])){
+					if(jQuery.isEmptyObject(result2[0])){
+						$scope.addUser(content);
+						alert("注册成功！");
+					  	$("#user_name").val("").removeClass('input-suc');
+					  	$("#password").val("").removeClass('input-suc');
+					  	$("#r_user_name").val("").removeClass('input-suc');
+					  	$("#r_password").val("").removeClass('input-suc');
+					  	$("#r_phone").val("").removeClass('input-suc');
+					  	$('form').animate({
+					        height: 'toggle',
+					        opacity: 'toggle'
+					    }, 'slow');
+					}
+					else{
+						alert("手机号已经被注册");
+					  	$("#r_user_name").removeClass('input-suc');
+					  	$("#r_password").removeClass('input-suc');
+					  	$("#r_phone").removeClass('input-suc').addClass('input-err');
+					}
+					
+				}
+				else{
+					alert("用户名已经被注册");
+				  	$("#r_user_name").removeClass('input-suc').addClass('input-err');
+				  	$("#r_password").removeClass('input-suc');
+				  	$("#r_phone").removeClass('input-suc');
+				}
+
 			});
-		  	alert("注册成功！");
-		  	$("#user_name").val("").removeClass('input-suc');
-		  	$("#password").val("").removeClass('input-suc');
-		  	$("#r_user_name").val("").removeClass('input-suc');
-		  	$("#r_password").val("").removeClass('input-suc');
-		  	$("#r_phone").val("").removeClass('input-suc');
+		  	
 	  	}
 	  	else{
 	  		// 摇晃
@@ -778,30 +826,105 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 		
 	}
 
+	$scope.traverseUser = function(collection,source){
+		var arr = [];
+
+		var prop = Object.keys(source);
+		for(var i = 0; i < collection.length; i++){
+			var flag = 1;
+			for(var j = 0; j < prop.length; j++){
+				if(collection[i].hasOwnProperty(prop[j]) && collection[i][prop[j]] == source[prop[j]]){
+					continue;
+				}
+				else{
+					flag = 0;
+				}
+			}
+
+			if(flag){
+				arr.push(collection[i]);
+			}
+			else{
+				continue;
+			}
+		}
+
+
+		return arr;
+	};
 
 
 
 
 
+	//SIGN with AUTH and Cookies;
+	function auth(){
+		var cookie = $cookies.get('userName');
+		// alert(cookie);
+		var content = {
+			name: cookie,
+		}
+		$http.post("/findUser",content).then(function(data){
+			// console.log(data.data);
+			var user = data.data[0];
+			switch(user.auth){
+				case "开发权限":
+					$(".menu ul li").css('display', 'block');
+					break;
+				case "管理权限":
+					$(".menu ul li:nth-child(1)").css('display', 'block');
+					$(".menu ul li:nth-child(3)").css('display', 'block');
+					$(".menu ul li:nth-child(4)").css('display', 'block');
+					$(".menu ul li:nth-child(6)").css('display', 'block');
+					$(".menu ul li:nth-child(7)").css('display', 'block');
+					$(".menu ul li:nth-child(8)").css('display', 'block');
+					$(".menu ul li:nth-child(9)").css('display', 'block');
+					break;
+				case "运营权限":
+					$(".menu ul li:nth-child(1)").css('display', 'block');
+					$(".menu ul li:nth-child(3)").css('display', 'block');
+					$(".menu ul li:nth-child(4)").css('display', 'block');
+					$(".menu ul li:nth-child(6)").css('display', 'block');
+					$(".menu ul li:nth-child(7)").css('display', 'block');
+					$(".menu ul li:nth-child(8)").css('display', 'block');
+					$(".menu ul li:nth-child(9)").css('display', 'block');
+					break;
+				case "普通用户":
+					$(".menu ul li:nth-child(1)").css('display', 'block');
+					$(".menu ul li:nth-child(3)").css('display', 'block');
+					$(".menu ul li:nth-child(4)").css('display', 'block');
+					$(".menu ul li:nth-child(7)").css('display', 'block');
+					$(".menu ul li:nth-child(8)").css('display', 'block');
+					$(".menu ul li:nth-child(9)").css('display', 'block');
+					break;
+				default:
+					break;
+			}
+
+		});
+		// alert("asd");
+	}
 
 
 
 	// Loading Event
 	$scope.getTable();
+	auth();
 
-		// 加载cookie
-		var cookie = $cookies.get('userName');
-		if(!cookie){
-			$scope.username = '藤椒侠';
-			// alert('没有登录用户，使用默认用户');
-		}
-		else{
-			$scope.username = $cookies.get('userName');
-			$('.sign').css('top', '-100%');
 
-			// alert('有名字');
-		}
-		
+	// 加载cookie
+	var cookie = $cookies.get('userName');
+	if(!cookie){
+		$scope.username = '藤椒侠';
+		// alert('没有登录用户，使用默认用户');
+	}
+	else{
+		$scope.username = $cookies.get('userName');
+		$('.sign').css('top', '-100%');
+
+		// alert('有名字');
+	}
+	
 
 		
 
@@ -1075,7 +1198,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 			$('.board').hide();
 			$('#board7').show();
 		});
-		$('.menu ul li:nth-child(9)').click(function(event) {
+		$('.menu ul li:nth-child(8)').click(function(event) {
 			/* Act on the event */
 			$('.board').hide();
 			$('#board8').show();
@@ -1092,11 +1215,12 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 	$("#create").click(function(){
 		check_register();
 		return false;
-	})
+	});
+
 	$("#login").click(function(){
 		check_login();
 		return false;
-	})
+	});
 	$('.message a').click(function () {
 	    $('form').animate({
 	        height: 'toggle',
