@@ -2,7 +2,7 @@ $(document).ready(function(){
 	loading();
 	window.onload = loaded();
 });
-var delay = 1000;
+var delay = 500;
 function loaded(){
 	
 	$(".loading-progress").animate({
@@ -12,7 +12,7 @@ function loaded(){
 		// body
 		$(".all").animate({
 			"opacity":"1"
-		}, 1000);
+		}, delay);
 		console.log("123");
 	}, 2*delay+500);
 }

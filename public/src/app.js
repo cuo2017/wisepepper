@@ -74,19 +74,19 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
            	
            	// lib/images/wea/snowy.png
            	if(weather == "多云" || weather == "阴"){
-           		$('.wea1 img').attr('src','lib/images/wea/cloudy.png');
+           		$('.wea1 img').attr('src','lib/images/wea/cloudy.jpg');
            	}
            	else if(weather == "大雾"){
-           		$('.wea1 img').attr('src','lib/images/wea/foggy.png');
+           		$('.wea1 img').attr('src','lib/images/wea/foggy.jpg');
            	}
            	else if(weather == "小雨"){
-           		$('.wea1 img').attr('src','lib/images/wea/rainy.png');
+           		$('.wea1 img').attr('src','lib/images/wea/rainy.jpg');
            	}
            	else if(weather == "小雪"){
-           		$('.wea1 img').attr('src','lib/images/wea/snowy.png');
+           		$('.wea1 img').attr('src','lib/images/wea/snowy.jpg');
            	}
            	else if(weather == "晴"){
-           		$('.wea1 img').attr('src','lib/images/wea/sunning.png');
+           		$('.wea1 img').attr('src','lib/images/wea/sunning.jpg');
            	}
 
 	   }); 
@@ -148,19 +148,19 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 			$('#rep-degree').text(report.degree);
 
 			if(report.type == "干旱"){
-				$('.wea4 img').attr('src','lib/images/new-disaster/3.png');
+				$('.wea4 img').attr('src','lib/images/new-disaster/3.jpg');
 			}
 			else if(report.type == "冻害"){
-				$('.wea4 img').attr('src','lib/images/new-disaster/4.png');
+				$('.wea4 img').attr('src','lib/images/new-disaster/4.jpg');
 			}
 			else if(report.type == "锈病"){
-				$('.wea4 img').attr('src','lib/images/new-disaster/5.png');
+				$('.wea4 img').attr('src','lib/images/new-disaster/5.jpg');
 			}
 			else if(report.type == "虫害"){
-				$('.wea4 img').attr('src','lib/images/new-disaster/2.png');
+				$('.wea4 img').attr('src','lib/images/new-disaster/2.jpg');
 			}
 			else if(report.type == "正常"){
-				$('.wea4 img').attr('src','lib/images/new-disaster/1.png');
+				$('.wea4 img').attr('src','lib/images/new-disaster/1.jpg');
 			}
 
 			// 缺少虫害图片
