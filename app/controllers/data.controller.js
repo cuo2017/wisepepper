@@ -44,7 +44,7 @@ module.exports = {
 
 	getDataBySys1: function(req,res,next){
 		var exec = require('child_process').exec;
-		var cmdStr = "python ./data/sys1/xiangsi.py";
+		var cmdStr = "python ./data/sys2/similar_new.py";
 		// 获取sys2里面的灾害预报
 		exec(cmdStr,function(err,stdout,stderr){
 			if(err){
@@ -86,7 +86,7 @@ module.exports = {
 				// };
 				var i = 3;
 				var degree = 0;
-				for(i;i<8;i++){
+				for(i;i<6;i++){
 					var b = result[i].toString();
 					degree += b;
 				}
