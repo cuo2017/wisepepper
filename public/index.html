@@ -2,20 +2,23 @@
 <html>
 <head>
 	<title>智慧藤椒|传统农业的信息化革命</title>
-	<link rel="shortcut icon" type="image/x-icon" href="lib/images/icon.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="lib/images/logo-icon-1024.ico">
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap-table/dist/bootstrap-table.min.css">
 	
-	<link rel="stylesheet" type="text/css" href="static/sign.css">
+	<link rel="stylesheet" type="text/css" href="static/css/sign.css">
 	<link rel="stylesheet" type="text/css" href="static/style.css">
 	<link rel="stylesheet" type="text/css" href="static/style-mobile.css">
+	<link rel="stylesheet" type="text/css" href="static/css/global.css">
+	<link rel="stylesheet" type="text/css" href="static/css/board.css">
 
-	<!-- 字体：有字库 -->
-	<script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js?"></script>
-	<script type="text/javascript">
+
+	<!-- 字体：有字库 --><!-- 
+	<script type="text/javascript" src="http://cdn.webfont.youziku.com/wwwroot/js/wf/youziku.api.min.js?"></script> -->
+	<!-- <script type="text/javascript">
 	   $youziku.load("#logo", "1c713bc541664b4098ea6fc86cb7a675", "JetLinkMediumOldStamp");
 	   $youziku.draw();
-	</script>
+	</script> -->
 
 	
 
@@ -40,9 +43,16 @@
 		<div class="sign">
 
 
+			<div class="sign-nav">
+				<div class="sign-nav-logo">
+					<img src="lib/images/logo-icon-white.png">
+					<h1>智慧藤椒</h1>
+				</div>
+			</div>
+			
 			<div class="sign-intro">
 				<h1>智慧藤椒</h1>
-				<p>智慧藤椒是一款开放的信息化智能农业管理平台，你可以在此获取藤椒作物的实时监控信息与统计数据分析，更能得到大数据与人工智能技术预测的灾害预警和健康状态。</p>
+				<p>智慧藤椒是一款开放的信息化智能农业管理平台，您可以在此获取藤椒作物的实时监控信息与统计数据分析，更能得到大数据与人工智能技术预测的灾害预警和健康状态。</p>
 			</div>
 
 
@@ -95,6 +105,16 @@
 
 
 			<img src="lib/images/bg1.jpg">
+
+			<div class="sign-footer">
+				<div class="sign-footer-a">
+					<a href="">关于我们</a>
+				</div>
+				<div class="sign-footer-p">
+					<p>© 2017-2018 wisepepper.com 版权所有 ICP证：蜀xxxxxxxxx</p>
+				</div>
+			</div>
+
 		</div>
 
 
@@ -102,55 +122,57 @@
 
 
 		<div class="nav">
-			<img src="lib/images/decoration.jpg">
-				<div class="row nav-bar">
-					<div class="nav-logo col-sm-3">
-						<div class="row">
-							<div class="col-md-6">
-								<img src="lib/images/logo4.png">
-							</div>			
-							<div class="col-md-6">
-								<a id="logo">智慧藤椒</a>
-							</div>			
-						</div>
-						
+			<div class="row nav-bar">
+				<!-- nav-left -->
+				<div class="col-sm-6">
+					<div class="nav-logo nav-func">
+						<img src="lib/images/logo6.png">
 					</div>
-
-					<div class="nav-title col-sm-6">
+					<div class="nav-title nav-func">
 						<h1 class="text-center">智慧藤椒管理系统</h1>
 					</div>
+					<div class="nav-service nav-func">
+						<h1 class="text-center">产品与服务<span class="glyphicon glyphicon-triangle-bottom" style="color:#FFF;margin-left:10px;"></span></h1>
+					</div>
+				</div>
+				<!-- nav-right -->
+				<div class="col-sm-6">
+					<div class="nav-user nav-func nav-func-r">
+						<p>{{username}}</p>	
+						<div class="nav-user-board">
+							<p>退出登录</p>	
+						</div>
+					</div>
 					
+					<div class="nav-about nav-func nav-func-r">
+						<p>关于</p>	
+					</div>
+					<div class="nav-contact nav-func nav-func-r">
+						<p>联系</p>	
+					</div>
+					<div class="nav-support nav-func nav-func-r">
+						<p>支持</p>	
+					</div>
+					
+				</div>
+			</div>
 
-					
-					<div class="nav-user col-sm-3">
-						<div class="row">
-							<div class="col-md-6">
-								<p class="text-right">你好，{{username}}</p>	
-								
-							</div>
-							<div class="col-md-1">
-								<img src="lib/images/user.jpg">
-							</div>
+
+			<div class="row nav-bar-mobile">
+				<div class="col-xs-6">
+					<div class="row">
+						<div class="col-xs-4">
+							<img src="lib/images/logo4.png">
+						</div>
+						<div class="col-xs-8">
+							<h1>智慧藤椒</h1>
 						</div>
 					</div>
 				</div>
-
-
-				<div class="row nav-bar-mobile">
-					<div class="col-xs-6">
-						<div class="row">
-							<div class="col-xs-4">
-								<img src="lib/images/logo4.png">
-							</div>
-							<div class="col-xs-8">
-								<h1>智慧藤椒</h1>
-							</div>
-						</div>
-					</div>
-					<div class="col-xs-6">
-						<p class="text-right">你好，{{username}}</p>
-					</div>
+				<div class="col-xs-6">
+					<p class="text-right">{{username}}</p>
 				</div>
+			</div>
 			
 		</div>
 
@@ -162,16 +184,40 @@
 
 		<div class="menu">
 			<ul>
-				<li><a>预警信息</a></li>
+				<!-- <li><a>预警信息</a></li>
 				<li><a>信息处理</a></li> 
-				<!-- 藤椒资讯以及反馈信息处理 -->
 				<li><a>图表分析</a></li>
 				<li><a>信息统计</a></li>
 				<li><a>用户总表</a></li>
 				<li><a>用户管理</a></li>
 				<li><a>个人信息</a></li>
 				<li><a>地理位置</a></li>
-				<li><a id="signout">退出登录</a></li>
+				<li><a id="signout">退出登录</a></li> -->
+
+
+				<li><span class="sub-glyphicon glyphicon glyphicon-th-list"><a>菜单</a></li>
+
+				<li id="M1" class="menu-topic"><span class="glyphicon glyphicon-triangle-right"></span><a>预警信息服务</a></li>
+				<li id="m1" class="forM1 menu-sub"><span class="sub-glyphicon glyphicon glyphicon-grain"><a>预警信息</a></li>
+				<!-- <li id="m2" class="menu-sub"><span class="sub-glyphicon glyphicon glyphicon-list-alt"><a>预警信息说明</a></li> -->
+				<li id="m2" class="forM1 menu-sub"><span class="sub-glyphicon glyphicon glyphicon-flash"><a>天气预报</a></li>
+				<li id="m3" class="forM1 menu-sub"><span class="sub-glyphicon glyphicon glyphicon-globe"><a>地理位置</a></li>
+
+				<li id="M2" class="menu-topic"><span class="glyphicon glyphicon-triangle-right"></span><a>健康分析服务</a></li> 
+				<li id="m4" class="forM2 menu-sub"><span class="sub-glyphicon glyphicon glyphicon-header"><a>健康分析</a></li>
+				<!-- <li id="m6" class="menu-sub"><span class="sub-glyphicon glyphicon glyphicon-list-alt"><a>健康分析说明</a></li> -->
+
+				<li id="M3" class="menu-topic"><span class="glyphicon glyphicon-triangle-right"></span><a>数据整理与统计</a></li> 
+				<li id="m5" class="forM3 menu-sub"><span class="sub-glyphicon glyphicon glyphicon-cloud-download"><a>藤椒资讯推送</a></li>
+				<li id="m6" class="forM3 menu-sub"><span class="sub-glyphicon glyphicon glyphicon-cloud-upload"><a>信息反馈</a></li>
+				<li id="m7" class="forM3 menu-sub"><span class="sub-glyphicon glyphicon glyphicon-object-align-bottom"><a>图表分析</a></li>
+				<li id="m8" class="forM3 menu-sub"><span class="sub-glyphicon glyphicon glyphicon-stats"><a>信息统计</a></li>
+
+				<li id="M4" class="menu-topic"><span class="glyphicon glyphicon-triangle-right"></span><a>用户管理工具</a></li> 
+				<li id="m9" class="forM4 menu-sub"><span class=" sub-glyphicon glyphicon glyphicon-wrench"></span><a>开发权限用户管理</a></li>
+				<li id="m10" class="forM4 menu-sub"><span class="forM4 sub-glyphicon glyphicon glyphicon-cog"></span><a>管理权限用户管理</a></li>
+				<li id="m11" class="forM4 menu-sub"><span class="forM4 sub-glyphicon glyphicon glyphicon-circle-arrow-up"></span><a>系统反馈</a></li>
+
 			</ul>
 		</div>
 
@@ -179,149 +225,261 @@
 
 		
 
-		<!-- 天气信息wea -->
-		<div class="board" id="board1">
-			<div class="wea1 wea">
 
-				<img src="">
-				<h1 id="wea1">天气预报</h1>
-				<div class="wea1-index">
-					<ul>
-						<li>空气质量：<span id="quality"></span></li>
-						<li>PM2.5指数：<span id="pm25"></span></li>
-						<li>最低温度：<span id="temp1"></span></li>
-						<li>最高温度：<span id="temp2"></span></li>
-						
-						<!-- <li>天气：<span id="weather"></span></li>
-						<li>风向：<span id="fx"></span></li>
-						<li>时间：<span id="ptime"></span></li>
-						<li>小贴士：<span id="notice"></span></li>
-						<li>污染提示：<span id="ganmao"></span></li>
-						<li>位置：<span id="location"></span></li> -->
+		<!-- 预警信息 warning -->
 
-					</ul>
+		<div class="board" id="board0">
+
+			<div class="b0-warning box">
+				<div class="box-menu">
+					<h1>预警信息推送</h1>
+				</div>
+				<div class="b0-warning-box box-content">
+					<h1>灾害预警类型</h1>
+					<p><span>{{warningType}}预警</span></p>
+				</div>
+				<div class="b0-warning-box box-content">
+					<h1>未来发生概率</h1>
+					<p><span>{{warningDegree}}</span></p>
 				</div>
 			</div>
 
-			<div class="wea2 wea">
-				<img src="lib/images/wea/snowy.png">
-				<h1>环境指数</h1>
-				<div class="wea2-index">
-					<ul>
-						<li>空气温度: <span id="at"></span></li>
-						<li>空气湿度: <span id="ah"></span></li>
-						<li>土壤温度: <span id="st"></span></li>
-						<li>土壤湿度: <span id="sh"></span></li>
-					</ul>
+
+			<div class="b0-warningIntro box">
+				<div class="box-menu">
+					<h1>灾害信息简介</h1>
+				</div>
+				<div class="b0-warningIntro-box box-content">
+					<img src="lib/images/disaster/rust.png">
+					<h1>{{warningType}}</h1>
+					<p>一种由真菌中的锈菌寄生引起的一类植物病害,分布广且危害性大。常发生于立春或是秋冬之际...</p>
+					<a href="">查看更多</a>
+
 				</div>
 			</div>
 
-			<div class="wea3 wea">
-				<h1>综合评价</h1>
-				<div class="wea3-review">
+
+			<div class="b0-warningExp box">
+				<div class="box-menu">
+					<h1>灾害预警说明</h1>
+				</div>
+				<div class="b0-warningExp-box box-content">
+					<h1>灾害预警类型说明</h1>
+					<p>本系统预警内容包含了 <span>锈病预警</span>、<span>虫害预警</span>、<span>冻害预警</span>、<span>干旱预警</span>	四种藤椒种植过程常见的灾害预警。</p>
+					<p>通过本系统的预警信息，配合推送到app端的解决措施，为藤椒种植过程实现指导建议的提供，以及缓解种植过程遭遇灾害侵袭的解决方案。</p>
+				</div>
+				<div class="b0-warningExp-box-2 b0-warningExp-box box-content">
+					<h1>未来发生概率说明</h1>
+					<p>本系统为灾害预警提供	<span style="color:#060">未来发生概率</span> 数据，旨在结合下表能够得到灾害的发生概率以及灾害程度。</p>
+					<div class="progress">
+					  	<div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 50%">
+					  		<p>低</p>
+					  	</div>
+					  	<div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 30%">
+					  		<p>中</p>
+					  	</div>
+					  	<div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 20%">
+					  		<p>高</p>
+					  	</div>
+					</div>
+
+					<div class="progressExp">
+						<p>低概率:  &lt; 60%	<br><i>(发生概率很小，基本不会发生)</i></p>
+						<p>中等概率: 60% ~ 80% <br><i>(有一定发生概率，程度不会太严重)</i></p>
+						<p>高概率:  &gt; 80% <br><i>(很可能会发生灾害，程度也不会很小，请注意防灾)</i></p>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="b0-dynamicData box">
+				<div class="box-menu">
+					<h1>环境数据实时监控</h1>
+				</div>
+				<div class="b0-dynamicData-box box-content">
 					<ul>
-						<li><div class="wea3-review-block">
+						<li><div class="">
 							<img src="lib/images/review/t.png">
-							空气温度<br><span id="at1">  </span>	
+							<p>空气温度</p>
+							<p><span>10°C</span></p>	
 						</div></li>
-						<li><div class="wea3-review-block">
+						<li><div class="">
 							<img src="lib/images/review/h.png">
-							空气湿度<br><span id="ah1">  </span>	
+							<p>空气湿度</p>
+							<p><span>66%</span></p>
 						</div></li>
-						<li><div class="wea3-review-block">
+						<li><div class="">
 							<img src="lib/images/review/st.png">
-							土壤温度<br><span id="st1">  </span>	
+							<p>土壤温度</p>
+							<p><span>9°C</span></p>	
 						</div></li>
-						<li><div class="wea3-review-block">
+						<li><div class="">
 							<img src="lib/images/review/sh.png">
-							土壤湿度<br><span id="sh1">  </span>	
+							<p>土壤湿度</p>
+							<p><span>52%</span></p>
 						</div></li>
 					</ul>
-				</div>
-				<h2>近一周环境指数走势</h2>
-				<div class="wea3-week">
-					<canvas id="myChart"></canvas>
 				</div>
 			</div>
-			<div class="wea4 wea">
-				<img src="lib/images/new-disaster/1.jpg">
-				<h1>灾害预报 </h1>
-				<div class="wea4-report">
-					<ul>
-						<li>灾害种类： <span id='rep-type'></span></li>
-						<li>未来发生概率： <span id='rep-degree'></span></li>
-					</ul>
+
+			<div class="b0-lastMonth box">
+				<div class="box-menu">
+					<h1>预警信息最近一月状况</h1>
+				</div>
+				<div class="b0-lastMonth-box box-content">
+					<canvas id="lastMonthChart"></canvas>
+				</div>
+				<div class="b0-lastMonth-box box-content">
+					<a href="">查看更多</a>
+				</div>
+			</div>
+
+			
+			<div class="b0-bonus box">
+				
+			</div>
+		</div>
+
+
+
+
+		<!-- 天气预报 weather report -->
+		
+		<div class="board" id="board1">
+			
+			<div class="b1-basic box">
+
+				<div class="box-menu">
+					<h1>基本天气信息</h1>
+				</div>
+
+				<div class="b1-basic-box box-content">
+					<img src="lib/images/weaLogo.png">
+					<h1>基本信息</h1>
+					<p>地理位置 {{wLocation}}</p>
+					<p>预报时间 {{wTime}}</p>
+					<p>天气预报 {{wWeather}}</p>
+				</div>
+
+				<div class="b1-basic-box box-content">
+					<h1>详细信息</h1>
+					<p>最{{wTemp2}}</p>
+					<p>最{{wTemp1}}</p>
+					<p>湿度 {{wShidu}}</p>
+					<p>天气提示 {{wNotice}}</p>
+				</div>
+
+				<div class="b1-basic-box box-content">
+					<h1>其他信息</h1>
+					<p>日出时间 上午{{wSunrise}} </p>
+					<p>日落时间 下午{{wSunset}}</p>
+					<p>风向 {{wFx}}</p>
+					<p>风力 {{wFl}}</p>
+				</div>
+
+			</div>
+
+
+			<div class="b1-future box">
+				<div class="box-menu">
+					<h1>未来天气预报</h1>
+				</div>
+				<div class="b1-future-box box-content">
+					<canvas></canvas>
+				</div>
+			</div>
+
+
+			<div class="b1-quality box">
+				<div class="box-menu">
+					<h1>空气指数</h1>
+				</div>
+
+				<div class="b1-quality-box box-content">
+					<p>PM2.5指数 {{wPm25}} </p>
+					<p>PM10指数 {{wPm10}}</p>
+					<p>空气质量 {{wQuality}}</p>
+					<p>空气质量指数(AQI) {{wAqi}}</p>
+					<p>出行建议 {{wGanmao}}</p>
 				</div>
 			</div>
 
 		</div>
+
+		<!-- 健康分析 -->
+
+		<div class="board" id="board2">
+			<div class="b2-health box">
+
+				<div class="box-menu">
+					<h1>健康分析系统</h1>
+				</div>	
+
+				<div class="b2-health-box box-content">
+					<p>尚在开发中...</p>
+				</div>
+
+			</div>
+		</div>
+
+
 
 		<!-- 图表分析chart -->
-		<div class="board" id="board3">
-			<!-- 1、温度 2、湿度 3、温度湿度雷达图 4、某种灾害预警概率极点图 -->
-			<div id="c1" class="chart">
-				<p name='c1' style="display: none;"><</p>
-				<h3>温度（°C）</h3>
-				<div class="chart-bar">
-					<h1>最近一周温度走势</h1>
-					<div class="chart-c">
-						<canvas id="chart1"></canvas>
-					</div>
-				</div>
-				<div class="chart-bar invisible-chart" style="display: none;">
-					<h1>最近一月温度详情</h1>
-					<div class="chart-c">
-						<canvas id="chart4"></canvas>
-					</div>
-				</div>
-			</div>
-			<div id="c2" class="chart">
-				<p name='c2' style="display: none;"><</p>
-				<h3>湿度（%）</h3>
-				<div class="chart-bar">
-					<h1>最近一周湿度走势</h1>
-					<div class="chart-c">
-						<canvas id="chart2"></canvas>
-					</div>
-				</div>
-				<div class="chart-bar invisible-chart" style="display: none;">
-					<h1>最近一月湿度详情</h1>
-					<div class="chart-c">
-						<canvas id="chart5"></canvas>
-					</div>
-				</div>
-			</div>
-			<div id="c3" class="chart">
-				<p name='c3' style="display: none;"><</p>
-				<h3>灾害（%）</h3>
-				<div class="chart-c">
-					<canvas id="chart3"></canvas>
-				</div>
-				<div class="chart-bar invisible-chart" style="display: none;">
-					
-				</div>
-			</div>
-			<div id="c4" class="chart">
-				<p name='c4' style="display: none;"><</p>
-				<h3>健康分析（%）</h3>
-				<div class="chart-c">
-					<canvas id="chart4"></canvas>
-				</div>
-			</div>
-			
 
-		
+		<div class="board" id="board3">
+
+			<div class="b3-chart box">
+
+				<div class="box-menu">
+					<h1>图表数据分析</h1>
+				</div>
+
+				<div class="b3-chart-menu">
+					<div class="b3-chart-menu-type">
+						<h1>选择灾害类型：</h1>
+						<ul>
+							<li><p>锈病</p></li>
+							<li><p>虫害</p></li>
+							<li><p>冻害</p></li>
+							<li><p>干旱</p></li>
+						</ul>
+					</div>	
+					<div class="b3-chart-menu-type">
+						<h1>选择时间段：</h1>
+						<ul>
+							<li><p>日</p></li>
+							<li><p>周</p></li>
+							<li><p>月</p></li>
+							<li><p>年</p></li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="b3-chart-box box-content">
+					<canvas id="b3-chart"></canvas>
+				</div>
+
+
+			</div>
+
 		</div>
+
+
 		<!-- 信息统计statistics -->
 
 
 		<div class="board" id="board4">
-			
-			<div id="stat">
-				<h1>环境信息数据统计</h1>
-				<table id="table-statistics"></table>
+			<div class="b4-stat box">
+				<div class="box-menu">
+					<h1>环境信息数据统计</h1>
+				</div>
+
+				<div class="b4-stat-box">
+					<table id="table-statistics"></table>
+				</div>
 			</div>
-			
+
 		</div>
 
 
@@ -330,10 +488,31 @@
 
 		<div class="board" id="board5">
 			<!-- This is bootstrap table. -->
-			<div id="user-all">
+			<div class="b5-user-all box">
+				<div class="box-menu">
+					<h1>开发权限用户管理</h1>
+				</div>
+
+				<div class="b5-user-all-box">
+					<table id="table-all"></table>
+
+					<div id="toolbar-all" class="btn-group">
+			            <button id="btn_add-all" type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal-all">
+			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+			            </button>
+			            <button id="btn_update-all" type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateModal-all">
+			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+			            </button>
+			            <button id="btn_delete-all" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-all">
+			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+			            </button>
+			        </div>
+				</div>
+			</div>
+
+			<!-- <div id="user-all">
 				<table id="table-all"></table>
 
-				<!-- toolbar -->
 				<div id="toolbar-all" class="btn-group">
 		            <button id="btn_add-all" type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal-all">
 		                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
@@ -345,35 +524,122 @@
 		                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 		            </button>
 		        </div>
-	        </div>
+	        
+	        </div> -->
+
+
 		</div>
+
+
 		<!-- 用户管理 -->
 		<div class="board" id="board6" >
-			<!-- This is bootstrap table. -->
-			<div id="user">
-				<table id="table"></table>
+			
+			<div class="b6-user box">
+				
+				<div class="box-menu">
+					
+					<h1>管理权限用户管理</h1>
 
-				<!-- toolbar -->
-				<div id="toolbar" class="btn-group">
-		            <button id="btn_add" type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal">
-		                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-		            </button>
-		            <button id="btn_update" type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateModal">
-		                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
-		            </button>
-		            <button id="btn_delete" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-		                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
-		            </button>
-		        </div>
-	        </div>
+				</div>
+
+				<div class="b6-user-box">
+					
+					<table id="table"></table>
+
+					<div id="toolbar" class="btn-group">
+			            
+			            <button id="btn_add" type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal">
+			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+			            </button>
+			            
+			            <button id="btn_update" type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateModal">
+			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+			            </button>
+			            
+			            <button id="btn_delete" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+			            </button>
+			       
+			        </div>
+				</div>
+
+
+			</div>
+
 
 	        
 		</div>
 
-
 		<!-- 个人信息 -->
+
+
 		<div class="board" id="board7">
-			<div id="user-one">
+
+			<div class="b7-title box">
+				
+				<h1> <span class="menu-glyphicon glyphicon glyphicon-user" aria-hidden="true"></span> 个人信息设置</h1>
+			</div>
+			<div class="b7-info">
+				<div class="b7-intro box">
+					<div class="box-menu">
+						<h1>基本资料</h1>
+					</div>
+
+					<div class="b7-content box-content">
+						<img src="lib/images/user.jpg">
+						<h3><span>修改头像</span></h3>
+					</div>
+
+					<div class="b7-intro-content box-content">
+						<p>登录用户名 ：{{name}} <span class="content-glyphicon glyphicon glyphicon-pencil"> </span></p>
+						<p>用户编号 ：{{number}}</p>
+						<p>注册时间 ：2017-9-13 9：00</p>
+						<p>地理位置 ：{{location}} <span class="content-glyphicon glyphicon glyphicon-pencil"> </span></p>
+						<p>拥有藤椒 ：{{pepperNumber}} <span class="content-glyphicon glyphicon glyphicon-pencil"> </span></p>
+					</div>
+
+				</div>
+				<div class="b7-safe box">
+					<div class="box-menu">
+						<h1>安全设置</h1>
+					</div>
+					<div class="b7-safe-content b7-content box-content">
+						<h1>手机绑定</h1>
+						<p>您已经注册了并绑定了手机号<span style="cursor: text;">{{phone}}</span>[您可以使用手机号来登录以及找回密码]</p>
+						<p> <span >修改</span></p>
+						
+					</div>
+
+					<div class="b7-safe-content-2 b7-safe-content b7-content box-content">
+						<h1>登录密码</h1>
+						<p>安全性高的密码可以使帐号更安全。建议您定期更换密码，设置一个包含字母，符号或数字中至少两项且长度超过6位的密码。</p>
+						<p> <span>修改</span></p>
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+			
+			<div class="b7-auth box">
+				<div class="box-menu">
+					<h1>用户权限</h1>
+				</div>
+				<div class="b7-auth-content box-content">
+					<h1>您的权限为：{{auth}}</h1>
+					<p>智慧藤椒管理系统包含<span>开发权限</span>、<span>管理权限</span>、<span>运营权限</span>以及<span>普通用户</span>四种权限。</p>
+					<p><span>普通用户</span>能够对<a>预警信息服务</a>、<a>健康分析服务进行访问。</a></p>
+					<p><span>运营用户</span>能够在<span>普通用户</span>基础上对<a>数据整理与统计</a>进行访问与操作</p>
+					<p><span>管理权限</span>能够在<span>运营用户</span>基础上对<a>管理权限用户管理工具</a>进行访问与操作</p>
+					<p><span>开发权限</span>能够在<span>管理权限</span>基础上对<a>开发权限用户管理工具</a>、<a>系统反馈</a>进行访问与操作</p>
+					<p>如果您需要更改您的权限，请联系拥有管理权限的管理人员进行更改。</p>
+					<p>如果您有任何权限定制需要或是权限内容修改，请联系开发者蔡雨帅。</p>
+				</div>
+			</div>
+
+			<!-- <div id="user-one">
 				<div class="row">
 					<div class="b7-left col-xs-6">
 						<div class="row">
@@ -415,21 +681,18 @@
 							<li>
 								<div class="b7-li">
 									<label for="pass">密码:</label>
-									<!-- <p name="pass">{{password}}</p> -->
 									<input id="b7-password" type="text" class="form-control" disabled="disabled" ng-value="password" name="pass"></input>
 								</div>
 							</li>
 							<li>
 								<div class="b7-li">
 									<label for="address">地址:</label>
-									<!-- <p name="address">{{location}}</p> -->
 									<input id="b7-location" type="text" class="form-control" disabled="disabled" ng-value="location" name="address"></input>
 								</div>
 							</li>
 							<li>
 								<div class="b7-li">
 									<label for="pepperNumber">拥有藤椒:</label>
-									<!-- <p name="pepperNumber">{{pepperNumber}}</p> -->
 									<input id="b7-pepperNumber" type="text" class="form-control" disabled="disabled" ng-value="pepperNumber" name="pepperNumber"></input>
 								</div>
 							</li>
@@ -446,14 +709,73 @@
 					<div class="col-sm-4"></div>
 					
 				</div>
-			</div>
+
+			</div> -->
 				
 			
 		</div>
 
-
+<!-- 地图 -->
 		<div class="board" id="board8">
-			<div id="container"></div>
+			<div class="b8-map box">
+				
+				<div class="box-menu">
+					<h1>藤椒基地</h1>
+				</div>
+
+				<div class="b8-map-box box-content">
+					<div id="container"></div>
+				</div>
+				
+			</div>
+		</div>
+
+<!-- 藤椒资讯推送 -->
+
+		<div class="board" id="board9">
+			<div class="b9-msgSend box">
+
+				<div class="box-menu">
+					<h1>藤椒资讯推送管理</h1>
+				</div>	
+
+				<div class="b9-msgSend-box box-content">
+					<p>尚在开发中...</p>
+				</div>
+
+			</div>
+		</div>
+
+<!-- 信息反馈 -->
+
+		<div class="board" id="board10">
+			<div class="b10-feedback box">
+
+				<div class="box-menu">
+					<h1>信息反馈</h1>
+				</div>	
+
+				<div class="b10-feedback-box box-content">
+					<p>尚在开发中...</p>
+				</div>
+
+			</div>
+		</div>
+
+<!-- 系统反馈 -->
+
+		<div class="board" id="board11">
+			<div class="b11-feedback box">
+
+				<div class="box-menu">
+					<h1>系统反馈</h1>
+				</div>	
+
+				<div class="b11-feedback-box box-content">
+					<p>尚在开发中...</p>
+				</div>
+
+			</div>
 		</div>
 
 
@@ -717,45 +1039,18 @@
 	<script type="text/javascript" src="lib/bootstrap-table/dist/bootstrap-table.min.js"></script>
 
 	<script type="text/javascript" src="src/load.js"></script>
+	<script type="text/javascript" src="src/global.js"></script>
 	<script type="text/javascript" src="src/app.js"></script>
-
+	<script type="text/javascript" src="src/chart.js"></script>
+	
 
 	
-	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=UpcDquBoNqAqkzNZPtAKxMwnVih4LtDm	"></script>
+
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=UpcDquBoNqAqkzNZPtAKxMwnVih4LtDm"></script>
 	<script type="text/javascript">
-		// 百度地图API功能
 		var map = new BMap.Map("container");
-		map.centerAndZoom(new BMap.Point(116.331398,39.897445),11);
-		map.enableScrollWheelZoom(true);
-		var longitude = 105.06;
-		var latitude = 31.10;
-		if(longitude != "" && latitude != ""){
-			map.clearOverlays(); 
-			var new_point = new BMap.Point(longitude,latitude);
-			var marker = new BMap.Marker(new_point);  // 创建标注
-			map.addOverlay(marker);              // 将标注添加到地图中
-			map.panTo(new_point); 
-			map.panBy(400,250);
-
-
-			// 104.940202, 31.142979 前锋镇
-			var point2 = new BMap.Point(104.862946,31.333467);
-			var marker2 = new BMap.Marker(point2);
-			map.addOverlay(marker2);
-
-			var opts = {    
-			    width : 250,     // 信息窗口宽度    
-			    height: 200,     // 信息窗口高度    
-			    title : "藤椒基地"  // 信息窗口标题   
-			}    
-			var infoWindow = new BMap.InfoWindow("三台县芦溪镇伍柏村", opts);  // 创建信息窗口对象    
-			map.openInfoWindow(infoWindow, point2);      // 打开信息窗口
-		}
-
-
-		// 104.862946,31.333467	五柏村
-
 	</script>
+	<script type="text/javascript" src="src/map.js"></script>
 
 
 	

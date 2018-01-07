@@ -1,51 +1,4 @@
-.sign {
-  position: absolute;
-  top: -100%;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  background: #333;
-  z-index: 12;
-  overflow: hidden; 
-}
-.sign img {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%; 
-}
 
-.sign-intro{
-  position: absolute;
-  top:25%;
-  left:10%;
-  width:35%;
-  z-index: 13;
-  color: #fff;
-}
-.sign-intro h1{
-  font-size: 4em;
-}
-.sign-intro p{
-  margin-top: 2em;
-  font-size: 1.5em;
-}
-
-
-
-
-.signbox{
-  position:absolute;
-  top:25%;
-  right:10%;
-  border-radius: 5px;
-  width:30%;
-}
-.login-page {
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
-}
 
 .form {
   position: relative;
@@ -131,16 +84,6 @@
 .container .info span .fa {
   color: #EF3B3A;
 }
-body {
-  background: #76b852; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-  background: -moz-linear-gradient(right, #76b852, #8DC26F);
-  background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
-}
 .shake_effect{
  	-webkit-animation-name: shake;
 		animation-name: shake;
@@ -182,4 +125,133 @@ body {
 }
 p.center{
 	color: #fff;font-family: "Microsoft YaHei";
+}
+
+
+
+/*sign bar
+*/
+.sign {
+  position: absolute;
+  top: -100%;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: #333;
+  z-index: 12;
+  overflow-x: hidden; 
+
+}
+.sign img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%; 
+}
+
+
+.sign-nav{
+	position:absolute;
+	top:0px;
+	left: 0px;
+	width:100%;
+	height:50px;
+	border-bottom: 1px solid #fff;
+	z-index: 13;
+	padding-top: 10px;
+	padding-left: 20px;
+}
+.sign-nav-logo{
+	position: relative;
+
+}
+.sign-nav img{
+	position: relative;
+	width:30px;
+	height:30px;
+	float: left;
+}
+.sign-nav h1{
+	margin: 5px;
+	position: relative;
+	color: #fff;
+	font-size: 20px;
+	float: left;
+	width: 200px
+}
+
+
+.sign-intro{
+  position: absolute;
+  top:25%;
+  left:10%;
+  width:35%;
+  z-index: 13;
+  color: #fff;
+}
+.sign-intro h1{
+  font-size: 4em;
+}
+.sign-intro p{
+  margin-top: 2em;
+  font-size: 1.5em;
+}
+
+
+
+
+
+.signbox{
+  position:absolute;
+  top:25%;
+  right:10%;
+  /*border-radius: 5px;*/
+  width:30%;
+}
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+
+
+.sign-footer{
+	position: absolute;
+	bottom:-50px;
+	left:0px;
+	background: #333;
+	width: 100%;
+	height:100px;
+
+}
+
+.sign-footer-a{
+	position: absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:50px;
+	padding-top: 15px;
+	padding-left: 5%;
+}
+
+.sign-footer-a a{
+	text-decoration: none;
+	font-size: 20px;
+	color: #fff;
+}
+
+.sign-footer-p{
+	position: absolute;
+	top:50px;
+	left:0px;
+	width:100%;
+	height:50px;
+	padding-top: 20px;
+	padding-left: 5%;
+}
+.sign-footer-p p{
+	font-size: 10px;
+	color: #fff;
+
 }

@@ -9,6 +9,7 @@ var userSchema = mongoose.Schema({
 	location : String,
 	pepperNumber: String,
 	img: String,
+	date: String,
 });
 
 var user = mongoose.model("user",userSchema);

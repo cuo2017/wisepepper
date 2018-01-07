@@ -4,17 +4,17 @@ var DELETE_LIST = [];
 var wp = angular.module('wp',['ngCookies']);
 
 wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',function($scope, $http,$cookies,$cookieStore){
-	// define
-	// var LOGIN_NAME_SUC = 0;
-	// var LOGIN_PASS_SUC = 0;
+	
 
 	var WEA1;
-	//api:https://api.seniverse.com/v3/weather/now.json?key=5dj6pbdppzrc72kp&location=chengdu&language=zh-Hans&unit=c
-	// new api:http://www.sojson.com/open/api/weather/json.shtml?city=北京
-
-	// user-information
+	
 
 
+
+
+	// 1	LOADING FUNCTION
+	// 2	CLICK FUNCTION
+	// 3	
 
 
 
@@ -39,6 +39,10 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 	   		// data resolving
            	var cityName = JSON.stringify(wea.city);//远程json数据放在query.results下 
            	cityName = cityName.replace(/\"/g,"");//正则去掉双引号
+
+           	var shidu = JSON.stringify(wea.data.shidu);//远程json数据放在query.results下 
+           	shidu = shidu.replace(/\"/g,"");//正则去掉双引号
+
            	var weather = JSON.stringify(wea.data.forecast[0].type);
            	weather = weather.replace(/\"/g,"");//正则去掉双引号
 			// // moment.locale('zh-cn');
@@ -53,14 +57,47 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 
            	var notice = JSON.stringify(wea.data.forecast[0].notice);
            	notice = notice.replace(/\"/g,"");
+
+           	var sunrise = JSON.stringify(wea.data.forecast[0].sunrise);
+           	sunrise = sunrise.replace(/\"/g,"");
+
+           	var sunset = JSON.stringify(wea.data.forecast[0].sunset);
+           	sunset = sunset.replace(/\"/g,"");
+
            	var fx = JSON.stringify(wea.data.forecast[0].fx);
            	fx = fx.replace(/\"/g,"");
-           	var pm25 = JSON.stringify(wea.data.pm25);
-           	var quality = JSON.stringify(wea.data.quality);
-           	var ganmao = JSON.stringify(wea.data.ganmao);
-           	
+       		var fl = JSON.stringify(wea.data.forecast[0].fl);
+           	fl = fl.replace(/\"/g,"");
 
-           	$('#location').text(cityName);
+           	var pm25 = JSON.stringify(wea.data.pm25);
+           	var pm10 = JSON.stringify(wea.data.pm10);
+           	var sunset = JSON.stringify(wea.data.forecast[0].sunset);
+           	sunset = sunset.replace(/\"/g,"");
+           	var quality = JSON.stringify(wea.data.quality);
+
+           	var ganmao = JSON.stringify(wea.data.ganmao);
+           	ganmao = ganmao.replace(/\"/g,"");
+           	var aqi = JSON.stringify(wea.data.forecast[0].aqi);
+           	aqi = aqi.replace(/\"/g,"");
+           	
+           	$scope.wLocation = cityName;
+           	$scope.wTime = ptime;
+           	$scope.wWeather = weather;
+           	$scope.wTemp1 = temp1;
+           	$scope.wTemp2 = temp2;
+           	$scope.wShidu = shidu;
+           	$scope.wNotice = notice;
+           	$scope.wSunrise = sunrise;
+           	$scope.wSunset = sunset;
+           	$scope.wFx = fx;
+           	$scope.wFl = fl;
+           	$scope.wPm25 = pm25;
+           	$scope.wPm10 = pm10;
+           	$scope.wQuality = quality;
+           	$scope.wGanmao = ganmao;
+           	$scope.wAqi = aqi;
+
+           	// $('#location').text(cityName);
            	$('#temp1').text(temp1);
            	$('#temp2').text(temp2);
            	$('#ptime').text(ptime);
@@ -145,7 +182,9 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 			// console.log(data.data);
 			var report = data.data;
 			$('#rep-type').text(report.type);
+			$scope.warningType = report.type;
 			$('#rep-degree').text(report.degree);
+			$scope.warningDegree = report.degree;
 
 			if(report.type == "干旱"){
 				$('.wea4 img').attr('src','lib/images/new-disaster/3.jpg');
@@ -172,331 +211,331 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 
 
 	// weather-chart
-	$scope.weaC = function(){
-		var ctx = $("#myChart").get(0).getContext("2d");
-		var myNewChart = new Chart(ctx);
-		var data = {
-			labels : ["周一","周二","周三","周四","周五","周六","周日"],
-			datasets : [
-				{
-					// 空气温度
-					label: "空气温度",
-		            fill: false,
-		            lineTension: 0.1,
-		            backgroundColor: "#33ccff",
-		            borderColor: "#3333ff",
-		            borderCapStyle: 'butt',
-		            borderDash: [],
-		            borderDashOffset: 0.0,
-		            borderJoinStyle: 'miter',
-		            pointBorderColor: "#33ccff",
-		            pointBackgroundColor: "#fff",
-		            pointBorderWidth: 1,
-		            pointHoverRadius: 5,
-		            pointHoverBackgroundColor: "#33ccff",
-		            pointHoverBorderColor: "#3333ff",
-		            pointHoverBorderWidth: 2,
-		            pointRadius: 5,
-		            pointHitRadius: 10,
-		            data: [18, 19, 20, 19, 17, 18, 16],
-		            spanGaps: false,
-				},
-				{
-					// 土壤温度
-					label: "空气温度",
-		            fill: false,
-		            lineTension: 0.1,
-		            backgroundColor: "#ff9966",
-		            borderColor: "#ff6633",
-		            borderCapStyle: 'butt',
-		            borderDash: [],
-		            borderDashOffset: 0.0,
-		            borderJoinStyle: 'miter',
-		            pointBorderColor: "#ff9966",
-		            pointBackgroundColor: "#fff",
-		            pointBorderWidth: 1,
-		            pointHoverRadius: 5,
-		            pointHoverBackgroundColor: "#ff9966",
-		            pointHoverBorderColor: "#ff6633",
-		            pointHoverBorderWidth: 2,
-		            pointRadius: 5,
-		            pointHitRadius: 10,
-		            data: [23, 25, 22, 22, 24, 20, 19],
-		            spanGaps: false,
-				}
-			]
-		}
-		new Chart(ctx, {
-		    type:'line',
-		    data: data
-		});
+	// $scope.weaC = function(){
+	// 	var ctx = $("#myChart").get(0).getContext("2d");
+	// 	var myNewChart = new Chart(ctx);
+	// 	var data = {
+	// 		labels : ["周一","周二","周三","周四","周五","周六","周日"],
+	// 		datasets : [
+	// 			{
+	// 				// 空气温度
+	// 				label: "空气温度",
+	// 	            fill: false,
+	// 	            lineTension: 0.1,
+	// 	            backgroundColor: "#33ccff",
+	// 	            borderColor: "#3333ff",
+	// 	            borderCapStyle: 'butt',
+	// 	            borderDash: [],
+	// 	            borderDashOffset: 0.0,
+	// 	            borderJoinStyle: 'miter',
+	// 	            pointBorderColor: "#33ccff",
+	// 	            pointBackgroundColor: "#fff",
+	// 	            pointBorderWidth: 1,
+	// 	            pointHoverRadius: 5,
+	// 	            pointHoverBackgroundColor: "#33ccff",
+	// 	            pointHoverBorderColor: "#3333ff",
+	// 	            pointHoverBorderWidth: 2,
+	// 	            pointRadius: 5,
+	// 	            pointHitRadius: 10,
+	// 	            data: [18, 19, 20, 19, 17, 18, 16],
+	// 	            spanGaps: false,
+	// 			},
+	// 			{
+	// 				// 土壤温度
+	// 				label: "空气温度",
+	// 	            fill: false,
+	// 	            lineTension: 0.1,
+	// 	            backgroundColor: "#ff9966",
+	// 	            borderColor: "#ff6633",
+	// 	            borderCapStyle: 'butt',
+	// 	            borderDash: [],
+	// 	            borderDashOffset: 0.0,
+	// 	            borderJoinStyle: 'miter',
+	// 	            pointBorderColor: "#ff9966",
+	// 	            pointBackgroundColor: "#fff",
+	// 	            pointBorderWidth: 1,
+	// 	            pointHoverRadius: 5,
+	// 	            pointHoverBackgroundColor: "#ff9966",
+	// 	            pointHoverBorderColor: "#ff6633",
+	// 	            pointHoverBorderWidth: 2,
+	// 	            pointRadius: 5,
+	// 	            pointHitRadius: 10,
+	// 	            data: [23, 25, 22, 22, 24, 20, 19],
+	// 	            spanGaps: false,
+	// 			}
+	// 		]
+	// 	}
+	// 	new Chart(ctx, {
+	// 	    type:'line',
+	// 	    data: data
+	// 	});
 
 		
-	};
-	$scope.weaC();
+	// };
+	// $scope.weaC();
 
 
 	// chart
-	$scope.chart = function(){
-		var ctx1 = $('#chart1').get(0).getContext("2d");
-		var myNewChart = new Chart(ctx1);
-		var data1 = {
-			labels : ["周一","周二","周三","周四","周五","周六","周日"],
-			datasets : [
-				{
-					// 空气温度
-					label: "空气温度",
-		            fill: false,
-		            lineTension: 0.1,
-		            backgroundColor: "#3333ff",
-		            borderColor: "#3333ff",
-		            borderCapStyle: 'butt',
-		            borderDash: [],
-		            borderDashOffset: 0.0,
-		            borderJoinStyle: 'miter',
-		            pointBorderColor: "#3333ff",
-		            pointBackgroundColor: "#fff",
-		            pointBorderWidth: 1,
-		            pointHoverRadius: 5,
-		            pointHoverBackgroundColor: "#3333ff",
-		            pointHoverBorderColor: "#3333ff",
-		            pointHoverBorderWidth: 2,
-		            pointRadius: 5,
-		            pointHitRadius: 10,
-		            data: [18, 19, 20, 19, 17, 18, 16],
-		            spanGaps: false,
-				},
-				{
-					// 土壤温度
-					label: "土壤温度",
-		            fill: false,
-		            lineTension: 0.1,
-		            backgroundColor: "#ff9966",
-		            borderColor: "#ff6633",
-		            borderCapStyle: 'butt',
-		            borderDash: [],
-		            borderDashOffset: 0.0,
-		            borderJoinStyle: 'miter',
-		            pointBorderColor: "#ff9966",
-		            pointBackgroundColor: "#fff",
-		            pointBorderWidth: 1,
-		            pointHoverRadius: 5,
-		            pointHoverBackgroundColor: "#ff9966",
-		            pointHoverBorderColor: "#ff6633",
-		            pointHoverBorderWidth: 2,
-		            pointRadius: 5,
-		            pointHitRadius: 10,
-		            data: [23, 25, 22, 22, 24, 20, 19],
-		            spanGaps: false,
-				}
-			]
-		}
-		new Chart(ctx1, {
-		    type:'line',
-		    data: data1
-		});
+	// $scope.chart = function(){
+	// 	var ctx1 = $('#chart1').get(0).getContext("2d");
+	// 	var myNewChart = new Chart(ctx1);
+	// 	var data1 = {
+	// 		labels : ["周一","周二","周三","周四","周五","周六","周日"],
+	// 		datasets : [
+	// 			{
+	// 				// 空气温度
+	// 				label: "空气温度",
+	// 	            fill: false,
+	// 	            lineTension: 0.1,
+	// 	            backgroundColor: "#3333ff",
+	// 	            borderColor: "#3333ff",
+	// 	            borderCapStyle: 'butt',
+	// 	            borderDash: [],
+	// 	            borderDashOffset: 0.0,
+	// 	            borderJoinStyle: 'miter',
+	// 	            pointBorderColor: "#3333ff",
+	// 	            pointBackgroundColor: "#fff",
+	// 	            pointBorderWidth: 1,
+	// 	            pointHoverRadius: 5,
+	// 	            pointHoverBackgroundColor: "#3333ff",
+	// 	            pointHoverBorderColor: "#3333ff",
+	// 	            pointHoverBorderWidth: 2,
+	// 	            pointRadius: 5,
+	// 	            pointHitRadius: 10,
+	// 	            data: [18, 19, 20, 19, 17, 18, 16],
+	// 	            spanGaps: false,
+	// 			},
+	// 			{
+	// 				// 土壤温度
+	// 				label: "土壤温度",
+	// 	            fill: false,
+	// 	            lineTension: 0.1,
+	// 	            backgroundColor: "#ff9966",
+	// 	            borderColor: "#ff6633",
+	// 	            borderCapStyle: 'butt',
+	// 	            borderDash: [],
+	// 	            borderDashOffset: 0.0,
+	// 	            borderJoinStyle: 'miter',
+	// 	            pointBorderColor: "#ff9966",
+	// 	            pointBackgroundColor: "#fff",
+	// 	            pointBorderWidth: 1,
+	// 	            pointHoverRadius: 5,
+	// 	            pointHoverBackgroundColor: "#ff9966",
+	// 	            pointHoverBorderColor: "#ff6633",
+	// 	            pointHoverBorderWidth: 2,
+	// 	            pointRadius: 5,
+	// 	            pointHitRadius: 10,
+	// 	            data: [23, 25, 22, 22, 24, 20, 19],
+	// 	            spanGaps: false,
+	// 			}
+	// 		]
+	// 	}
+	// 	new Chart(ctx1, {
+	// 	    type:'line',
+	// 	    data: data1
+	// 	});
 
 
 
 
-		var ctx4 = $('#chart4').get(0).getContext("2d");
-		var myNewChart = new Chart(ctx4);
-		var data4 = {
-			labels : ["11.16","11.23","11.30","12.7"],
-			datasets : [
-				{
-					// 空气温度
-					label: "空气温度",
-		            fill: false,
-		            lineTension: 0.1,
-		            backgroundColor: "#3333ff",
-		            borderColor: "#3333ff",
-		            borderCapStyle: 'butt',
-		            borderDash: [],
-		            borderDashOffset: 0.0,
-		            borderJoinStyle: 'miter',
-		            pointBorderColor: "#3333ff",
-		            pointBackgroundColor: "#fff",
-		            pointBorderWidth: 1,
-		            pointHoverRadius: 5,
-		            pointHoverBackgroundColor: "#3333ff",
-		            pointHoverBorderColor: "#3333ff",
-		            pointHoverBorderWidth: 2,
-		            pointRadius: 5,
-		            pointHitRadius: 10,
-		            data: [18, 19, 20, 19],
-		            spanGaps: false,
-				},
-				{
-					// 土壤温度
-					label: "土壤温度",
-		            fill: false,
-		            lineTension: 0.1,
-		            backgroundColor: "#ff9966",
-		            borderColor: "#ff6633",
-		            borderCapStyle: 'butt',
-		            borderDash: [],
-		            borderDashOffset: 0.0,
-		            borderJoinStyle: 'miter',
-		            pointBorderColor: "#ff9966",
-		            pointBackgroundColor: "#fff",
-		            pointBorderWidth: 1,
-		            pointHoverRadius: 5,
-		            pointHoverBackgroundColor: "#ff9966",
-		            pointHoverBorderColor: "#ff6633",
-		            pointHoverBorderWidth: 2,
-		            pointRadius: 5,
-		            pointHitRadius: 10,
-		            data: [23, 25, 22, 22],
-		            spanGaps: false,
-				}
-			]
-		}
-		new Chart(ctx4, {
-		    type:'bar',
-		    data: data4
-		});
+	// 	var ctx4 = $('#chart4').get(0).getContext("2d");
+	// 	var myNewChart = new Chart(ctx4);
+	// 	var data4 = {
+	// 		labels : ["11.16","11.23","11.30","12.7"],
+	// 		datasets : [
+	// 			{
+	// 				// 空气温度
+	// 				label: "空气温度",
+	// 	            fill: false,
+	// 	            lineTension: 0.1,
+	// 	            backgroundColor: "#3333ff",
+	// 	            borderColor: "#3333ff",
+	// 	            borderCapStyle: 'butt',
+	// 	            borderDash: [],
+	// 	            borderDashOffset: 0.0,
+	// 	            borderJoinStyle: 'miter',
+	// 	            pointBorderColor: "#3333ff",
+	// 	            pointBackgroundColor: "#fff",
+	// 	            pointBorderWidth: 1,
+	// 	            pointHoverRadius: 5,
+	// 	            pointHoverBackgroundColor: "#3333ff",
+	// 	            pointHoverBorderColor: "#3333ff",
+	// 	            pointHoverBorderWidth: 2,
+	// 	            pointRadius: 5,
+	// 	            pointHitRadius: 10,
+	// 	            data: [18, 19, 20, 19],
+	// 	            spanGaps: false,
+	// 			},
+	// 			{
+	// 				// 土壤温度
+	// 				label: "土壤温度",
+	// 	            fill: false,
+	// 	            lineTension: 0.1,
+	// 	            backgroundColor: "#ff9966",
+	// 	            borderColor: "#ff6633",
+	// 	            borderCapStyle: 'butt',
+	// 	            borderDash: [],
+	// 	            borderDashOffset: 0.0,
+	// 	            borderJoinStyle: 'miter',
+	// 	            pointBorderColor: "#ff9966",
+	// 	            pointBackgroundColor: "#fff",
+	// 	            pointBorderWidth: 1,
+	// 	            pointHoverRadius: 5,
+	// 	            pointHoverBackgroundColor: "#ff9966",
+	// 	            pointHoverBorderColor: "#ff6633",
+	// 	            pointHoverBorderWidth: 2,
+	// 	            pointRadius: 5,
+	// 	            pointHitRadius: 10,
+	// 	            data: [23, 25, 22, 22],
+	// 	            spanGaps: false,
+	// 			}
+	// 		]
+	// 	}
+	// 	new Chart(ctx4, {
+	// 	    type:'bar',
+	// 	    data: data4
+	// 	});
 
 
 
 
 
-		var ctx2 = $('#chart2').get(0).getContext("2d");
-		var myNewChart = new Chart(ctx2);
-		var data2 = {
-			labels : ["周一","周二","周三","周四","周五","周六","周日"],
-			datasets : [
-				{
-					// 空气湿度
-					label: "空气湿度",
-		            fill: false,
-		            lineTension: 0.1,
-		            backgroundColor: "#66ddff",
-		            borderColor: "#66ddff",
-		            borderCapStyle: 'butt',
-		            borderDash: [],
-		            borderDashOffset: 0.0,
-		            borderJoinStyle: 'miter',
-		            pointBorderColor: "#66ddff",
-		            pointBackgroundColor: "#fff",
-		            pointBorderWidth: 1,
-		            pointHoverRadius: 5,
-		            pointHoverBackgroundColor: "#66ddff",
-		            pointHoverBorderColor: "#66ddff",
-		            pointHoverBorderWidth: 2,
-		            pointRadius: 5,
-		            pointHitRadius: 10,
-		            data: [33, 33, 48, 60, 67, 48, 46],
-		            spanGaps: false,
-				},
-				{
-					// 土壤湿度
-					label: "土壤湿度",
-		            fill: false,
-		            lineTension: 0.1,
-		            backgroundColor: "#dbdb70",
-		            borderColor: "#dbdb70",
-		            borderCapStyle: 'butt',
-		            borderDash: [],
-		            borderDashOffset: 0.0,
-		            borderJoinStyle: 'miter',
-		            pointBorderColor: "#dbdb70",
-		            pointBackgroundColor: "#fff",
-		            pointBorderWidth: 1,
-		            pointHoverRadius: 5,
-		            pointHoverBackgroundColor: "#dbdb70",
-		            pointHoverBorderColor: "#dbdb70",
-		            pointHoverBorderWidth: 2,
-		            pointRadius: 5,
-		            pointHitRadius: 10,
-		            data: [27, 31, 42, 32, 34, 20, 19],
-		            spanGaps: false,
-				}
-			]
-		}
-		new Chart(ctx2, {
-		    type:'line',
-		    data: data2
-		});
+	// 	var ctx2 = $('#chart2').get(0).getContext("2d");
+	// 	var myNewChart = new Chart(ctx2);
+	// 	var data2 = {
+	// 		labels : ["周一","周二","周三","周四","周五","周六","周日"],
+	// 		datasets : [
+	// 			{
+	// 				// 空气湿度
+	// 				label: "空气湿度",
+	// 	            fill: false,
+	// 	            lineTension: 0.1,
+	// 	            backgroundColor: "#66ddff",
+	// 	            borderColor: "#66ddff",
+	// 	            borderCapStyle: 'butt',
+	// 	            borderDash: [],
+	// 	            borderDashOffset: 0.0,
+	// 	            borderJoinStyle: 'miter',
+	// 	            pointBorderColor: "#66ddff",
+	// 	            pointBackgroundColor: "#fff",
+	// 	            pointBorderWidth: 1,
+	// 	            pointHoverRadius: 5,
+	// 	            pointHoverBackgroundColor: "#66ddff",
+	// 	            pointHoverBorderColor: "#66ddff",
+	// 	            pointHoverBorderWidth: 2,
+	// 	            pointRadius: 5,
+	// 	            pointHitRadius: 10,
+	// 	            data: [33, 33, 48, 60, 67, 48, 46],
+	// 	            spanGaps: false,
+	// 			},
+	// 			{
+	// 				// 土壤湿度
+	// 				label: "土壤湿度",
+	// 	            fill: false,
+	// 	            lineTension: 0.1,
+	// 	            backgroundColor: "#dbdb70",
+	// 	            borderColor: "#dbdb70",
+	// 	            borderCapStyle: 'butt',
+	// 	            borderDash: [],
+	// 	            borderDashOffset: 0.0,
+	// 	            borderJoinStyle: 'miter',
+	// 	            pointBorderColor: "#dbdb70",
+	// 	            pointBackgroundColor: "#fff",
+	// 	            pointBorderWidth: 1,
+	// 	            pointHoverRadius: 5,
+	// 	            pointHoverBackgroundColor: "#dbdb70",
+	// 	            pointHoverBorderColor: "#dbdb70",
+	// 	            pointHoverBorderWidth: 2,
+	// 	            pointRadius: 5,
+	// 	            pointHitRadius: 10,
+	// 	            data: [27, 31, 42, 32, 34, 20, 19],
+	// 	            spanGaps: false,
+	// 			}
+	// 		]
+	// 	}
+	// 	new Chart(ctx2, {
+	// 	    type:'line',
+	// 	    data: data2
+	// 	});
 
 
 
-		var ctx5 = $('#chart5').get(0).getContext("2d");
-		var myNewChart = new Chart(ctx5);
-		var data5 = {
-			labels : ["11.16","11.23","11.30","12.7"],
-			datasets : [
-				{
-					// 空气湿度
-					label: "空气湿度",
-		            fill: false,
-		            lineTension: 0.1,
-		            backgroundColor: "#66ddff",
-		            borderColor: "#66ddff",
-		            borderCapStyle: 'butt',
-		            borderDash: [],
-		            borderDashOffset: 0.0,
-		            borderJoinStyle: 'miter',
-		            pointBorderColor: "#66ddff",
-		            pointBackgroundColor: "#fff",
-		            pointBorderWidth: 1,
-		            pointHoverRadius: 5,
-		            pointHoverBackgroundColor: "#66ddff",
-		            pointHoverBorderColor: "#66ddff",
-		            pointHoverBorderWidth: 2,
-		            pointRadius: 5,
-		            pointHitRadius: 10,
-		            data: [18, 19, 20, 19],
-		            spanGaps: false,
-				},
-				{
-					// 土壤湿度
-					label: "土壤湿度",
-		            fill: false,
-		            lineTension: 0.1,
-		            backgroundColor: "#dbdb70",
-		            borderColor: "#dbdb70",
-		            borderCapStyle: 'butt',
-		            borderDash: [],
-		            borderDashOffset: 0.0,
-		            borderJoinStyle: 'miter',
-		            pointBorderColor: "#dbdb70",
-		            pointBackgroundColor: "#fff",
-		            pointBorderWidth: 1,
-		            pointHoverRadius: 5,
-		            pointHoverBackgroundColor: "#dbdb70",
-		            pointHoverBorderColor: "#dbdb70",
-		            pointHoverBorderWidth: 2,
-		            pointRadius: 5,
-		            pointHitRadius: 10,
-		            data: [23, 25, 22, 22],
-		            spanGaps: false,
-				}
-			]
-		}
-		new Chart(ctx5, {
-		    type:'bar',
-		    data: data5
-		});
+	// 	var ctx5 = $('#chart5').get(0).getContext("2d");
+	// 	var myNewChart = new Chart(ctx5);
+	// 	var data5 = {
+	// 		labels : ["11.16","11.23","11.30","12.7"],
+	// 		datasets : [
+	// 			{
+	// 				// 空气湿度
+	// 				label: "空气湿度",
+	// 	            fill: false,
+	// 	            lineTension: 0.1,
+	// 	            backgroundColor: "#66ddff",
+	// 	            borderColor: "#66ddff",
+	// 	            borderCapStyle: 'butt',
+	// 	            borderDash: [],
+	// 	            borderDashOffset: 0.0,
+	// 	            borderJoinStyle: 'miter',
+	// 	            pointBorderColor: "#66ddff",
+	// 	            pointBackgroundColor: "#fff",
+	// 	            pointBorderWidth: 1,
+	// 	            pointHoverRadius: 5,
+	// 	            pointHoverBackgroundColor: "#66ddff",
+	// 	            pointHoverBorderColor: "#66ddff",
+	// 	            pointHoverBorderWidth: 2,
+	// 	            pointRadius: 5,
+	// 	            pointHitRadius: 10,
+	// 	            data: [18, 19, 20, 19],
+	// 	            spanGaps: false,
+	// 			},
+	// 			{
+	// 				// 土壤湿度
+	// 				label: "土壤湿度",
+	// 	            fill: false,
+	// 	            lineTension: 0.1,
+	// 	            backgroundColor: "#dbdb70",
+	// 	            borderColor: "#dbdb70",
+	// 	            borderCapStyle: 'butt',
+	// 	            borderDash: [],
+	// 	            borderDashOffset: 0.0,
+	// 	            borderJoinStyle: 'miter',
+	// 	            pointBorderColor: "#dbdb70",
+	// 	            pointBackgroundColor: "#fff",
+	// 	            pointBorderWidth: 1,
+	// 	            pointHoverRadius: 5,
+	// 	            pointHoverBackgroundColor: "#dbdb70",
+	// 	            pointHoverBorderColor: "#dbdb70",
+	// 	            pointHoverBorderWidth: 2,
+	// 	            pointRadius: 5,
+	// 	            pointHitRadius: 10,
+	// 	            data: [23, 25, 22, 22],
+	// 	            spanGaps: false,
+	// 			}
+	// 		]
+	// 	}
+	// 	new Chart(ctx5, {
+	// 	    type:'bar',
+	// 	    data: data5
+	// 	});
 
 
 
 
-		var ctx3 = $('#chart3').get(0).getContext("2d");
-		var myNewChart = new Chart(ctx3);
-		var data3 = {
-			labels : ["锈病","干旱","冻害","虫害"],
-			datasets : [
+	// 	var ctx3 = $('#chart3').get(0).getContext("2d");
+	// 	var myNewChart = new Chart(ctx3);
+	// 	var data3 = {
+	// 		labels : ["锈病","干旱","冻害","虫害"],
+	// 		datasets : [
 				
-				{
-		            data: [20,30,40,10],
-				}
-			]
-		};
-		new Chart(ctx3, {
-		    type:'polarArea',
-		    data: data3
-		});
+	// 			{
+	// 	            data: [20,30,40,10],
+	// 			}
+	// 		]
+	// 	};
+	// 	new Chart(ctx3, {
+	// 	    type:'polarArea',
+	// 	    data: data3
+	// 	});
 
 
 
@@ -506,10 +545,10 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 
 
 
-	};
+	// };
 
 
-	$scope.chart();
+	// $scope.chart();
 
 
 
@@ -551,8 +590,8 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 			sortOrder: "asc", //排序方式
 			sidePagination: "client", //客户端分页
 			pageNumber:1,                       //初始化加载第一页，默认第一页
-	        pageSize: 7,                       //每页的记录行数（*）
-	        pageList: [7],        //可供选择的每页的行数（*）
+	        pageSize: 10,                       //每页的记录行数（*）
+	        pageList: [10],        //可供选择的每页的行数（*）
 	        search: true,//客户端搜索
 	        strictSearch: true,
 	        minimumCountColumns: 2,             //最少允许的列数
@@ -588,8 +627,8 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 			sortOrder: "asc", //排序方式
 			sidePagination: "client", //客户端分页
 			pageNumber:1,                       //初始化加载第一页，默认第一页
-	        pageSize: 7,                       //每页的记录行数（*）
-	        pageList: [7],        //可供选择的每页的行数（*）
+	        pageSize: 10,                       //每页的记录行数（*）
+	        pageList: [10],        //可供选择的每页的行数（*）
 	        search: true,//客户端搜索
 	        strictSearch: true,
 	        minimumCountColumns: 2,             //最少允许的列数
@@ -636,8 +675,8 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 			sortOrder: "asc", //排序方式
 			sidePagination: "client", //客户端分页
 			pageNumber:1,                       //初始化加载第一页，默认第一页
-	        pageSize: 7,                       //每页的记录行数（*）
-	        pageList: [7],        //可供选择的每页的行数（*）
+	        pageSize: 10,                       //每页的记录行数（*）
+	        pageList: [10],        //可供选择的每页的行数（*）
 	        search: true,//客户端搜索
 	        strictSearch: true,
 	        minimumCountColumns: 2,             //最少允许的列数
@@ -867,41 +906,41 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 		$http.post("/findUser",content).then(function(data){
 			// console.log(data.data);
 			var user = data.data[0];
-			// $(".menu ul li").css('display', 'none');
-			switch(user.auth){
-				case "开发权限":
-					$(".menu ul li").css('display', 'block');
-					break;
-				case "管理权限":
-					$(".menu ul li:nth-child(1)").css('display', 'block');
-					$(".menu ul li:nth-child(3)").css('display', 'block');
-					$(".menu ul li:nth-child(4)").css('display', 'block');
-					$(".menu ul li:nth-child(6)").css('display', 'block');
-					$(".menu ul li:nth-child(7)").css('display', 'block');
-					$(".menu ul li:nth-child(8)").css('display', 'block');
-					$(".menu ul li:nth-child(9)").css('display', 'block');
-					break;
-				case "运营权限":
-					$(".menu ul li:nth-child(1)").css('display', 'block');
-					$(".menu ul li:nth-child(3)").css('display', 'block');
-					$(".menu ul li:nth-child(4)").css('display', 'block');
-					$(".menu ul li:nth-child(6)").css('display', 'block');
-					$(".menu ul li:nth-child(7)").css('display', 'block');
-					$(".menu ul li:nth-child(8)").css('display', 'block');
-					$(".menu ul li:nth-child(9)").css('display', 'block');
-					break;
-				case "普通用户":
-					$(".menu ul li:nth-child(1)").css('display', 'block');
-					$(".menu ul li:nth-child(3)").css('display', 'block');
-					$(".menu ul li:nth-child(4)").css('display', 'block');
-					$(".menu ul li:nth-child(7)").css('display', 'block');
-					$(".menu ul li:nth-child(8)").css('display', 'block');
-					$(".menu ul li:nth-child(9)").css('display', 'block');
-					break;
-				default:
-					$(".menu ul li").css('display', 'block');
-					break;
-			}
+			$(".menu ul li").css('display', 'block');
+			// switch(user.auth){
+			// 	case "开发权限":
+			// 		$(".menu ul li").css('display', 'block');
+			// 		break;
+			// 	case "管理权限":
+			// 		$(".menu ul li:nth-child(1)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(3)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(4)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(6)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(7)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(8)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(9)").css('display', 'block');
+			// 		break;
+			// 	case "运营权限":
+			// 		$(".menu ul li:nth-child(1)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(3)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(4)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(6)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(7)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(8)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(9)").css('display', 'block');
+			// 		break;
+			// 	case "普通用户":
+			// 		$(".menu ul li:nth-child(1)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(3)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(4)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(7)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(8)").css('display', 'block');
+			// 		$(".menu ul li:nth-child(9)").css('display', 'block');
+			// 		break;
+			// 	default:
+			// 		$(".menu ul li").css('display', 'block');
+			// 		break;
+			// }
 
 		});
 		// alert("asd");
@@ -918,6 +957,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 	var cookie = $cookies.get('userName');
 	if(!cookie){
 		$scope.username = '藤椒侠';
+		$('.sign').css('top', '0%');
 		// alert('没有登录用户，使用默认用户');
 	}
 	else{
@@ -1144,69 +1184,7 @@ wp.controller('wpController',['$scope','$http','$cookies','$cookieStore',functio
 
 	
 	
-		// menu click
-	$(function(){
-
-		$('.menu ul li').click(function(event) {
-			/* Act on the event */
-			$('.menu ul li').children('a').css({
-				"color":"#666",
-			}).hover(function() {
-				/* Stuff to do when the mouse enters the element */
-				$(this).css('color', '#3c763d');
-			}, function() {
-				/* Stuff to do when the mouse leaves the element */
-				$(this).css('color', '#666');
-			});
-			$('.menu ul li').css('border', 'none');
-			$(this).children('a').css({
-				"color":"#3c763d"
-			}).hover(function() {
-				/* Stuff to do when the mouse enters the element */
-				$(this).css('color', '#3c763d');
-			}, function() {
-				/* Stuff to do when the mouse leaves the element */
-				$(this).css('color', '#3c763d');
-			});
-			$(this).css('border-bottom', '2px solid #3c763d');
-		});
-		$('.menu ul li:nth-child(1)').click(function(event) {
-			/* Act on the event */
-			$('.board').hide();
-			$('#board1').show();
-		});
-		$('.menu ul li:nth-child(3)').click(function(event) {
-			/* Act on the event */
-			$('.board').hide();
-			$('#board3').show();
-		});
-		$('.menu ul li:nth-child(4)').click(function(event) {
-			/* Act on the event */
-			$('.board').hide();
-			$('#board4').show();
-		});
-		$('.menu ul li:nth-child(5)').click(function(event) {
-			/* Act on the event */
-			$('.board').hide();
-			$('#board5').show();
-		});
-		$('.menu ul li:nth-child(6)').click(function(event) {
-			/* Act on the event */
-			$('.board').hide();
-			$('#board6').show();
-		});
-		$('.menu ul li:nth-child(7)').click(function(event) {
-			/* Act on the event */
-			$('.board').hide();
-			$('#board7').show();
-		});
-		$('.menu ul li:nth-child(8)').click(function(event) {
-			/* Act on the event */
-			$('.board').hide();
-			$('#board8').show();
-		});
 		
-	})
 	
 
 
